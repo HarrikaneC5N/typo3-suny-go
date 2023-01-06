@@ -1,0 +1,41 @@
+{namespace annuaire=Emagineurs\EAnnuaires\ViewHelpers}
+<f:layout name="Default" />
+<f:section name="main">
+    <!-- Start template : Extensions/e_annuaires/Templates/Fiche/Resultat.html -->
+    <div class="results results-annuaire">
+        <f:flashMessages />
+        <div class="count-msg">
+            <p>Il y a
+                <f:count subject="{fiches}" />
+                <f:if condition="{f:count(subject:fiches)} > 1">
+                    <f:then>résultats </f:then>
+                    <f:else>résultat </f:else>
+                </f:if>
+                <f:if condition="{searchObjet.titre}">
+                    pour "<strong>{searchObjet.titre}</strong>"
+                </f:if>
+                <f:if condition="{searchObjet.categoryGeneral}">
+                    sur la thématique "<strong>
+                        <f:cObject typoscriptObjectPath="lib.themeannuResult" data="{sourceUid: searchObjet.categoryGeneral}" /></strong>"
+                </f:if>
+                <f:if condition="{searchObjet.categoryPersonne}">
+                    sur la thématique "<strong>
+                        <f:cObject typoscriptObjectPath="lib.themeannuResult" data="{sourceUid: searchObjet.categoryPersonne}" /></strong>"
+                </f:if>
+                <f:if condition="{searchObjet.categoryVideo}">
+                    sur la thématique "<strong>
+                        <f:cObject typoscriptObjectPath="lib.themeannuResult" data="{sourceUid: searchObjet.categoryVideo}" /></strong>"
+                </f:if>
+            </p>
+        </div>
+        <f:if condition="{settings.templateLayoutResult}">
+            <f:then>
+                <f:render partial="List/List-{settings.templateLayoutResult}" section="list" arguments="{_all}" />
+            </f:then>
+            <f:else>
+                <f:render partial="List/List" section="list" arguments="{_all}" />
+            </f:else>
+        </f:if>
+    </div>
+    <!-- End template : Extensions/e_annuaires/Templates/Fiche/Resultat.html -->
+</f:section>

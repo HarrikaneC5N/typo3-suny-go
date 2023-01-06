@@ -1,0 +1,21 @@
+/* Menu accessible */
+#a11y-menu {
+    left: 0;
+    position: absolute;
+    top: 5px;
+    z-index: 100;
+    li {
+    	display: inline;
+    }
+	a {
+	    overflow: hidden;
+	    padding: 0;
+	    position: absolute;
+	    text-decoration: none;
+	    width: 1px;
+	    &:active, &:focus {
+		    color: #000;
+		    position: static;
+	    }
+	}
+}

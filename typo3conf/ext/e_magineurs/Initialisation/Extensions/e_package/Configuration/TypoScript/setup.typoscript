@@ -1,0 +1,2 @@
+<INCLUDE_TYPOSCRIPT: source="DIR: EXT:e_package/Configuration/TypoScript/Extension/Setup/">
+<INCLUDE_TYPOSCRIPT: source="DIR: EXT:e_package/Configuration/TypoScript/General/Setup/">

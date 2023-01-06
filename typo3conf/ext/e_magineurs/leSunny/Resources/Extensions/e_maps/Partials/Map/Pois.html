@@ -1,0 +1,89 @@
+
+<f:comment>
+		$pois = array(
+			'items'=> array (
+				model poi
+			)
+			'table'=>'tx_emaps_domain_model_poi',
+			'type'=>'Poi'
+		);
+		
+	/!\ Ne pas enlever les classes et les ids, pour le fonctionnement js! /!\
+</f:comment>
+
+
+<f:if condition="{pois}">
+	<ul class="pois list-unstyled">
+		<f:for each="{pois}" as="poitype">
+			<li class="type">
+			<f:if condition="{poitype.type} == Poi">
+				<f:then>
+					<span class="icone poi">Lieux</span>
+				</f:then>
+				<f:else>
+					<f:if condition="{poitype.type} == news">
+						<f:then>
+							<span class="icone news">Agendas</span>
+						</f:then>
+						<f:else>
+							<span>{poitype.type}</span>
+						</f:else>
+					</f:if>
+				</f:else>
+			</f:if>
+				<f:if condition="{poitype.items}">
+					<ol class="allpois">
+						<f:for each="{poitype.items}" as="poi">
+							<f:if condition="{poi.address} || {poi.placeadress} || {poi.poi}">
+								<li id="emaps_{poitype.table}_{poi.uid}">
+	                                <p>
+	                                    <f:if condition="{poi.iconmarker.originalResource.publicUrl}">
+	                                        <img src="{poi.iconmarker.originalResource.publicUrl}"/>
+	                                    </f:if>
+	                                    <strong>
+	                                        <f:if condition="{poi.name}">
+	                                            <f:then>
+	                                                <a href="#" id="{settings.map.mapUniqId}_{poitype.table}_{poi.uid}" class="eMapsLoadInfosPoi__{settings.map.mapUniqId}" >{poi.name}</a>
+	                                            </f:then>
+	                                            <f:else>
+													<a href="#" id="{settings.map.mapUniqId}_{poitype.table}_{poi.uid}" class="eMapsLoadInfosPoi__{settings.map.mapUniqId}" >{poi.title}</a>
+	                                            </f:else>
+	                                        </f:if>
+	                                    </strong>
+	                                </p>
+	                                <p>
+										<f:if condition="{poi.address}">
+											{poi.address}
+										</f:if>
+										<f:if condition="{poi.city}">    
+											<f:if condition="{poi.city.0}">
+												<f:then>
+													, {poi.city.0.zipcode} {poi.city.0.title} {poi.country} 
+												</f:then>
+												<f:else>
+													, {poi.zip} {poi.city} {poi.country}
+												</f:else>
+											</f:if>
+										</f:if>
+										<f:if condition="{poi.placename}">
+										    {poi.placename}, 
+										</f:if>
+										<f:if condition="{poi.placeadress}"><f:format.stripTags>{poi.placeadress}</f:format.stripTags></f:if>
+										<f:if condition="{poi.town}">{poi.town}</f:if>
+										<f:if condition="poi.poi">
+											<f:for each="{poi.poi}" as="poi">
+												<f:if condition="{poi.name}">{poi.name}, </f:if>
+												<f:if condition="{poi.address}">{poi.address}</f:if>
+												<f:if condition="{poi.city}">, {poi.zip} {poi.city}</f:if>
+											</f:for>
+										</f:if>
+									</p>
+								</li>
+							</f:if>
+						</f:for>
+					</ol>
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
+</f:if>

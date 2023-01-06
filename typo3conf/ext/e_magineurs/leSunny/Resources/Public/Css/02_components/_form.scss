@@ -1,0 +1,121 @@
+/* Label */
+label, .label {}
+
+/* Input, Select & Textarea */
+input {}
+textarea {}
+select {	
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+}
+select::-ms-expand {
+	display: none;
+}
+
+/* Form & Submit */
+.form-control, .custom-select, [type="submit"] {}
+[type="submit"] {}
+
+/* Erreur */
+.parsley-errors-list {
+	color: $color-danger;
+}
+
+/* Powermail */
+#powermail_tabmenu {
+	padding: 0;
+	list-style: none;
+	width: 100%;
+	li {
+		position: relative;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-flex: 1;
+		-ms-flex: 1;
+		flex: 1;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-transition: .5s;
+		transition: .5s;
+		&:not(:last-child):after {			
+			position: relative;
+			-webkit-box-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+			height: 1px;
+			margin: .5rem 0 0 0;
+			content: "";
+			background-color: rgba(0,0,0,0.1);
+		}
+		&:not(:first-child):before {
+			position: relative;
+			-webkit-box-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+			height: 1px;
+			margin: .5rem 0 0 0;
+			content: "";
+			background-color: rgba(0,0,0,0.1);
+		}
+		a {
+			padding: 1.5rem;
+			text-align: center;
+			.circle {
+				display: inline-block;
+				width: 1.75rem;
+				height: 1.75rem;
+				margin-right: .5rem;
+				line-height: 1.7rem;
+				color: #fff;
+				text-align: center;
+				background: rgba(0,0,0,0.38);
+				border-radius: 50%;			
+			}
+			.label {
+				display: inline-block;
+			}
+		}
+		&.btn-primary, &.previous {
+			a .circle {
+				background: #000;
+			}
+		}
+		&.btn-danger {
+			a {
+				color: $color-danger;
+				.circle {
+					background: $color-danger;
+				}
+			}
+		}
+	}
+	.btn-primary {
+		background: none;
+		border: none;
+	}
+	.btn-danger {
+		background: none;
+		border: none;
+	}
+}
+
+/* Datepicker */
+.btn-datepicker{
+	display: block;
+	width: 25px;
+	height: 25px;
+	text-indent: -99999em;
+	background: url(../../Images/date-none.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	&.stop {
+		background-image:  url(../../Images/date.png);
+	}
+}
+.picker__select--month, .picker__select--year {
+	height: auto;
+	padding: 0;
+}

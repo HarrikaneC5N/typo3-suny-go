@@ -1,0 +1,10 @@
+e_magineurs.tx_egestiondocs {
+  view {
+    # cat=e_magineurs.tx_egestiondocs/file; type=string; label=Path to template root (FE)
+    templateRootPath = e_gestiondocs/Templates/
+    # cat=e_magineurs.tx_egestiondocs/file; type=string; label=Path to template partials (FE)
+    partialRootPath = e_gestiondocs/Partials/
+    # cat=e_magineurs.tx_egestiondocs/file; type=string; label=Path to template layouts (FE)
+    layoutRootPath = tx_egestiondocs/Layouts/
+  }
+}

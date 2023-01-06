@@ -1,0 +1,30 @@
+{namespace vh=In2code\Powermail\ViewHelpers}
+
+<div class="form-group powermail_fieldwrap powermail_fieldwrap_type_input powermail_fieldwrap_{field.marker} {field.css} {settings.styles.framework.fieldAndLabelWrappingClasses}">
+	<f:render partial="Form/FieldLabel" arguments="{_all}" />
+
+	<div class="{settings.styles.framework.fieldWrappingClasses}">
+		<f:if condition="{vh:Validation.FieldTypeFromValidation(field:field)} == url || {vh:Validation.FieldTypeFromValidation(field:field)} == email || {vh:Validation.FieldTypeFromValidation(field:field)} == tel">
+			<f:then>
+				<f:form.textfield
+						type="{vh:Validation.FieldTypeFromValidation(field:field)}"
+						property="{field.marker}"
+						placeholder="{field.placeholder}"
+						value="{vh:Misc.PrefillField(field:field, mail:mail)}"
+						class="form-control powermail_input {settings.styles.framework.fieldClasses} {vh:Validation.ErrorClass(field:field, class:'powermail_field_error')}"	
+						additionalAttributes="{vh:Validation.ValidationDataAttribute(field:field, additionalAttributes:'{autocomplete:\'{vh:Validation.FieldTypeFromValidation(field:field)}\'}')}"		
+						id="powermail_field_{field.marker}" />
+			</f:then>
+			<f:else>
+				<f:form.textfield
+						type="{vh:Validation.FieldTypeFromValidation(field:field)}"
+						property="{field.marker}"
+						placeholder="{field.placeholder}"
+						value="{vh:Misc.PrefillField(field:field, mail:mail)}"
+						class="form-control powermail_input {settings.styles.framework.fieldClasses} {vh:Validation.ErrorClass(field:field, class:'powermail_field_error')}"
+						additionalAttributes="{vh:Validation.ValidationDataAttribute(field:field)}"	
+						id="powermail_field_{field.marker}" />
+			</f:else>
+		</f:if>
+	</div>
+</div>

@@ -1,0 +1,51 @@
+/* Chargement des typos */
+@font-face {
+	font-family: Nunito;
+	src: url(../../Fonts/Nunito-Regular.ttf);
+}
+
+/* Variables de couleur */
+$color-primary:#2b182d;
+$color-secondary:#885979;
+$color-tertiary:#ffe9c2;
+$dark-grey:#212121;
+$light-grey:#F2E8EE;
+$color-danger:red;
+
+/* Variables d'espacement */
+$margin : 60px;
+$padding : $margin/2;
+
+/* Variables de style globales */
+$shadow : 0 0 20px rgba(0,0,0,0.1);
+$shadow-focus : 0 0 10px rgba(0,0,0,0.07);
+$radius : 5px;
+$border: 1px solid $light-grey;
+
+/* Variables de typographies */
+$color-text : $dark-grey;
+
+/* Laisser les valeurs en px, les tailles sont calculée en rem par la suite */
+$h1-size : 55px;
+$h2-size : 30px;
+$h3-size : 21px;
+$h4-size : 18px;
+$h5-size : 16px;
+$p-size : 16px;
+$chapo-size : 18px;
+
+$line-height : 1.6;
+$line-height-title : 1.3;
+
+/* Ratio des titres en mobile */
+$font-ratio : 0.7;
+
+/* Taille du conteneur */
+$container-width: 65rem;  
+
+/* Grille sémantic ui */
+$mobile-breakpoint				: 36rem; /*576px*/
+$tablet-breakpoint				: 48rem; /*768px*/
+$computer-breakpoint			: 62rem; /*992px*/
+$large-monitor-breakpoint		: 75rem; /*1200px*/
+$widescreen-monitor-breakpoint	: 99rem; /*1584px*/

@@ -1,0 +1,22 @@
+<f:layout name="Default" />
+This Template is responsible for displaying a single view for a domain object
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+Show.html: keep
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+<f:section name="main">
+    <!-- Start template : Extensions/e_annuaires/Templates/Fiche/Show.html -->
+    <f:flashMessages />
+    <f:if condition="{settings.templateLayoutDetail}">
+        <f:then>
+            <f:render partial="Fiche/Detail-{settings.templateLayoutDetail}" arguments="{_all}" />
+        </f:then>
+        <f:else>
+            <f:render partial="Fiche/Detail" arguments="{_all}" />
+        </f:else>
+    </f:if>
+    <!-- End template : Extensions/e_annuaires/Templates/Fiche/List.html -->
+</f:section>

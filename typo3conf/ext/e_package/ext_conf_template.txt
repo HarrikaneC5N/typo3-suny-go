@@ -1,0 +1,2 @@
+# cat=Settings; type=boolean; label=Activer le bouton "Sauvegarder et quitter"
+enableSaveAndClose = 1

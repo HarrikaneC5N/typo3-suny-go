@@ -1,0 +1,101 @@
+/* Base */
+* {
+	-webkit-box-sizing:border-box;
+	        box-sizing:border-box;
+}
+
+html, body{
+	font-family: Nunito;
+    font-weight: 400;
+    line-height: $line-height;
+	// font-size: 40px;
+}
+
+/* Images */
+img {
+	max-width: 100%;
+	height: auto;
+	border-style: none;
+	vertical-align: middle;
+}
+// .img-wrap{}
+
+/* Iframes & Vidéos */
+iframe {
+	max-width: 100%;
+	height: auto;
+}
+video {
+	max-width: 100%;
+	height: auto;
+}
+#imgOPP{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+}
+
+
+
+.poulpe-title{
+	color: #009899;
+	font-size: 35px;
+	font-weight: bolder;
+	margin-left:350px;
+    margin-right: 0px;
+}
+
+.poulpe-text-2{
+	border-left: solid grey 1px;
+	padding-left: 25px;
+	margin-left:390px;
+    margin-right: 0px;
+}
+
+.aligner-le-toutou{
+	margin-left:350px;
+    margin-right: 0px;
+	padding: 20px 0px 20px 0px;
+}
+
+.col-12{
+	// margin-left:350px;
+    margin-right: 150px;
+	padding-right: 290px;
+}
+
+.redo-bloko{
+	background-color: rgba(228,91,81, 255); // red block
+	display: flex;
+	align-items: center;
+	height: 60px;
+	padding-left: 15px;
+	color: white;
+	font-weight: bolder;
+}
+
+.text-align-redo{
+	padding: 25px;
+
+}
+
+.text-align-bluto{
+	text-align: center;
+}
+
+.pdf-link-test{
+	background-color: rgba(228,91,81, 255);
+	font-size: 15px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	a{
+		color: white;
+	}
+}	
+
+.tablePlugTest{
+	background-color: #009899;
+}

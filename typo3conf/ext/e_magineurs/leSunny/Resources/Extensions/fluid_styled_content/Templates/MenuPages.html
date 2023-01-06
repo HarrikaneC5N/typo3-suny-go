@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+
+	<f:if condition="{menu}">
+		<ul>
+			<f:for each="{menu}" as="page">
+				<li>
+					<f:if condition="{page.data.doktype} == 3">
+						<f:then>
+							<f:link.external uri="{page.data.url}" target="_blank" title="{page.title} (nouvelle fenêtre)">{page.title}</f:link.external>
+						</f:then>
+						<f:else>
+							<f:if condition="{page.current}">
+								<f:then>
+									<f:link.page pageUid="{page.data.uid}" title="Page active">
+										{page.title}
+									</f:link.page>
+								</f:then>
+								<f:else>
+									<f:link.page pageUid="{page.data.uid}">
+										{page.title}
+									</f:link.page>
+								</f:else>
+							</f:if>
+						</f:else>
+					</f:if>
+				</li>
+			</f:for>
+		</ul>
+	</f:if>
+
+</f:section>
+</html>

@@ -1,0 +1,8 @@
+/* Gestion des page résultats des extensions (news, annuaire...) */
+/* Nomenclature : results + results--extension */
+.results{
+	/* Spécificités annuaire*/
+	&.results-annuaire{}
+	/* Spécificités news*/
+	&.results-news{}
+}

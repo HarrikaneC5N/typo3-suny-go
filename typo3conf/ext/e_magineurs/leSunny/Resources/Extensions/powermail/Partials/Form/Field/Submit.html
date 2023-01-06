@@ -1,0 +1,27 @@
+
+<div class="form-group powermail_fieldwrap powermail_fieldwrap_type_submit powermail_fieldwrap_{field.marker} {field.css} {settings.styles.framework.fieldAndLabelWrappingClasses}">
+	<f:if condition="!{settings.main.privacy}">
+		<div class="custom-control custom-checkbox checkbox policy">
+			<input 
+				required="required" 
+				aria-required="true" 
+				class="custom-control-input powermail_checkbox" 
+				id="privacy" 
+				type="checkbox" 
+				name="tx_powermail_pi1[field][privacy]" 
+				value="policy accepted"
+				data-parsley-required-message='<f:translate key="LLL:typo3conf/ext/e_package/Resources/Private/Language/locallang.xlf:acceptPrivacyError" />'
+			>
+			<label for="privacy" class="custom-control-label">
+				<f:translate key="LLL:typo3conf/ext/e_package/Resources/Private/Language/locallang.xlf:acceptPrivacyText" />
+				<f:link.page pageUid="{f:cObject(typoscriptObjectPath: 'lib.pagePolicy')}">
+					<f:translate key="LLL:typo3conf/ext/e_package/Resources/Private/Language/locallang.xlf:acceptPrivacyLink" />
+				</f:link.page>
+				<f:translate key="LLL:typo3conf/ext/e_package/Resources/Private/Language/locallang.xlf:acceptPrivacyTextBis" />
+			</label>
+		</div>
+	</f:if>
+	<div class="{settings.styles.framework.fieldWrappingClasses} {settings.styles.framework.offsetClasses}">
+		<f:form.submit value="{field.title}" class="btn btn-primary {settings.styles.framework.submitClasses}" />
+	</div>
+</div>

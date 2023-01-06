@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+
+<f:layout name="Split"/>
+
+<f:section name="extra">
+	<div class="rechercheFiltre">
+		<f:render partial="Search/Form" section="FormResult" arguments="{search:search, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace, resultSet: resultSet}" />
+	</div>
+	<f:if condition="{resultSet.hasSearched}">
+		<div class="navbar">
+			<ul class="nav col">
+				<f:render partial="Result/Sorting" section="Sorting" arguments="{resultSet:resultSet}" />
+				<f:render partial="Result/Facets" section="Facets" arguments="{resultSet:resultSet}" />
+			</ul>
+		</div>	
+	</f:if>	
+	<f:if condition="{resultSet.facets.used -> f:count()}">
+		<div id="tx-solr-facets-in-use">
+			<ul class="list-unstyled">
+				<f:for each="{resultSet.facets.used}" as="facet">
+					<f:for each="{facet.allFacetItems.selected}" as="item">
+						<li>
+							<a href="{s:uri.facet.removeFacetItem(facet: facet, facetItem: item)}" class="badge badge-primary solr-ajaxified">{item.label}</a>
+						</li>
+					</f:for>
+				</f:for>
+				<li class="facets-remove-all">
+					<a href="{s:uri.facet.removeAllFacets()}" class="badge badge-primary solr-ajaxified">
+						<s:translate key="faceting_removeAllFilters">Remove all filters</s:translate>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</f:if>	
+</f:section>
+
+<f:section name="content">
+	<div id="tx-solr-search">
+		<f:if condition="{resultSet.isAutoCorrected}">
+			<f:then>
+				<p class="searched-for">
+					<s:translate key="no_results_nothing_found" arguments="{0: resultSet.initialQueryString}">Nothing found for "%s".</s:translate>
+					<s:translate key="no_results_showing_results_suggestion" arguments="{0: resultSet.correctedQueryString}">Showing results for &quot;@suggestedWord&quot;.</s:translate>
+				</p>
+			</f:then>
+			<f:else>
+				<f:if condition="{resultSet.usedQuery.query}">
+					<p class="searched-for">
+						<s:translate key="results_searched_for" arguments="{0: resultSet.usedQuery.query}">Searched for "%s"</s:translate>
+					</p>
+				</f:if>
+			</f:else>
+		</f:if>
+
+		<f:if condition="{resultSet.hasSpellCheckingSuggestions}">
+			<p>
+				<s:translate key="didYouMean">Did you mean</s:translate>
+				<f:for each="{resultSet.spellCheckingSuggestions}" as="suggestion">
+					<f:link.page additionalParams="{q:suggestion.suggestion}" noCacheHash="1">{suggestion.suggestion}</f:link.page>
+				</f:for> ?
+			</p>
+		</f:if>
+
+		<f:if condition="{resultSet.allResultCount}">
+			<p class="result-found">
+				<f:if condition="{resultSet.allResultCount} == 1">
+					<f:then>
+						<strong>{resultSet.allResultCount} résultat</strong> correspond à votre recherche.
+					</f:then>
+					<f:else>
+						<strong>{resultSet.allResultCount} résultats</strong> correspondent à votre recherche.
+					</f:else>
+				</f:if>
+				<s:pageBrowserRange>
+					<s:translate key="results_range" arguments="{0:from, 1: to, 2: total}">
+						Results %d until %d of %d
+					</s:translate>
+				</s:pageBrowserRange>
+			</p>
+		</f:if>
+
+		<f:if condition="{resultSet.hasSearched}">
+			<s:widget.resultPaginate resultSet="{resultSet}" configuration="{insertAbove: 0}">
+				<div data-start="{pagination.resultCountStart}" class="solr list-view list-group">
+					<f:for each="{documents}" as="document">
+						<f:render partial="Result/DocumentList" section="Document" arguments="{resultSet:resultSet, document:document}" />
+					</f:for>
+				</div>
+			</s:widget.resultPaginate>
+		</f:if>
+	</div>
+</f:section>

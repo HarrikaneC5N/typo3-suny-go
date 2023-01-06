@@ -1,0 +1,30 @@
+<html data-namespace-typo3-fluid="true" lang="en"
+			xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+			xmlns:dpn="http://typo3.org/ns/Featdd/DpnGlossary/ViewHelpers"
+			dpn:schemaLocation="http://schemas.featdd.de/dpn_glossary.xsd">
+
+<f:layout name="Default"/>
+	<f:section name="Main"> 
+		<f:if condition="{listmode} == 'character'">
+			<div>		 
+				<f:for each="{terms}" as="groupTerms" key="firstChar">
+					<strong>{firstChar}</strong>
+					<f:render partial="Term/List" arguments="{terms: groupTerms, detailPage: detailPage}"/>
+				</f:for>				
+			</div>
+		</f:if>
+		<f:if condition="{listmode} == 'normal'">
+			<div>			
+				<f:render partial="Term/List" arguments="{terms: terms, detailPage: detailPage}"/>				
+			</div>
+		</f:if>
+		<f:if condition="{listmode} == 'pagination'">
+			<dpn:widget.paginate objects="{terms}" field="name" as="paginatedTerms">
+				<div>				
+					<f:render partial="Term/List" arguments="{terms: paginatedTerms, detailPage: detailPage}"/>					
+				</div>
+			</dpn:widget.paginate>
+		</f:if>
+	</f:section>
+</html>

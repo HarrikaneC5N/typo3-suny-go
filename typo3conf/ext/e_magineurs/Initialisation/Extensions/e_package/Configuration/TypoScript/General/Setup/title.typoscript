@@ -1,0 +1,128 @@
+config.noPageTitle = 2
+page = PAGE
+page {
+    headerData {
+        10 = COA_INT
+        10 {
+            5 = TEXT
+            5.value = <title>
+
+            10 = TEXT
+            10.field = seo_title // title
+
+            20 = TEXT
+            20.data = GP:tx_solr|q
+            20.noTrimWrap = | - mot-clé : |
+            20.if.isTrue.data = GP:tx_solr|q
+
+            30 = TEXT
+            30.data = GP:tx_solr|filter|0
+            30.noTrimWrap = | - filtré par : |
+            30.if.isTrue.data = GP:tx_solr|filter|0
+
+            40 = TEXT
+            40.data = GP:tx_solr|filter|1
+            40.noTrimWrap = | - filtré par : |
+            40.if.isTrue.data = GP:tx_solr|filter|1
+
+            50 = TEXT
+            50.data = GP:tx_solr|page
+            50.noTrimWrap = | - Page : |
+            50.if.isTrue.data = GP:tx_solr|page
+
+            55 = TEXT
+            55.data = GP:tx_news_pi1|@widget_0|currentPage
+            55.noTrimWrap = | - Page : |
+            55.if.isTrue.data = GP:tx_news_pi1|@widget_0|currentPage
+
+            60 = TEXT
+            60.data = GP:tx_eannuaires_pi1|@widget_0|currentPage
+            60.noTrimWrap = | - Page : |
+            60.if.isTrue.data = GP:tx_eannuaires_pi1|@widget_0|currentPage
+
+            100 = TEXT
+            100.noTrimWrap =  | |  - {$e_magineurs.conf.siteTitle}</title>
+        }
+    }
+}
+[getTSFE() && getTSFE().id == {$e_magineurs.conf.homePage}]
+    page.headerData.10 >
+    page.headerData.10 = TEXT
+    page.headerData.10.stdWrap.noTrimWrap = |<title>{$e_magineurs.conf.siteTitle}</title>|
+[global]
+
+[request.getQueryParams()['tx_fsmediagallery_mediagallery'] && request.getQueryParams()['tx_fsmediagallery_mediagallery']['mediaAlbum'] > 0]
+    temp.newsTitle = RECORDS
+    temp.newsTitle {
+        dontCheckPid = 1
+        tables = sys_file_collection
+        source.data = GP:tx_fsmediagallery_mediagallery|mediaAlbum
+        source.intval = 1
+        conf.sys_file_collection = TEXT
+        conf.sys_file_collection {
+            field = title
+            htmlSpecialChars = 1
+        }
+        stdWrap.noTrimWrap = |<title>| - {$e_magineurs.conf.siteTitle}</title>|
+    }
+    page.headerData.10 >
+    page.headerData.10 = TEXT
+    page.headerData.10 < temp.newsTitle
+[global]
+
+[request.getQueryParams()['tx_news_pi1'] && request.getQueryParams()['tx_news_pi1']['news'] > 0]
+    temp.newsTitle = RECORDS
+    temp.newsTitle {
+        dontCheckPid = 1
+        tables = tx_news_domain_model_news
+        source.data = GP:tx_news_pi1|news
+        source.intval = 1
+        conf.tx_news_domain_model_news = TEXT
+        conf.tx_news_domain_model_news {
+            field = title
+            htmlSpecialChars = 1
+        }
+        stdWrap.noTrimWrap = |<title>| - {$e_magineurs.conf.siteTitle}</title>|
+    }
+    page.headerData.10 >
+    page.headerData.10 = TEXT
+    page.headerData.10 < temp.newsTitle
+[global]
+
+[request.getQueryParams()['tx_eannuaires_pi1'] && request.getQueryParams()['tx_eannuaires_pi1']['fiche'] > 0]
+    temp.newsTitle = RECORDS
+    temp.newsTitle {
+        dontCheckPid = 1
+        tables = tx_eannuaires_domain_model_fiche
+        source.data = GP:tx_eannuaires_pi1|fiche
+        source.intval = 1
+        conf.tx_eannuaires_domain_model_fiche = TEXT
+        conf.tx_eannuaires_domain_model_fiche {
+            field = title
+            htmlSpecialChars = 1
+        }
+        stdWrap.noTrimWrap = |<title>| - {$e_magineurs.conf.siteTitle}</title>|
+    }
+    page.headerData.10 >
+    page.headerData.10 = TEXT
+    page.headerData.10 < temp.newsTitle
+[global]
+
+[request.getQueryParams()['tx_dpnglossary_glossary'] && request.getQueryParams()['tx_dpnglossary_glossary']['term'] > 0]
+    temp.newsTitle = RECORDS
+    temp.newsTitle {
+        dontCheckPid = 1
+        tables = tx_dpnglossary_domain_model_term
+        source.data = GP:tx_dpnglossary_glossary|term
+        source.intval = 1
+        conf.tx_dpnglossary_domain_model_term = TEXT
+        conf.tx_dpnglossary_domain_model_term {
+            field = name
+            htmlSpecialChars = 1
+        }
+        stdWrap.noTrimWrap = |<title>| - {$e_magineurs.conf.siteTitle}</title>|
+    }
+    page.headerData.10 >
+    page.headerData.10 = TEXT
+    page.headerData.10 < temp.newsTitle
+[global]

@@ -1,0 +1,5 @@
+e_package.conf {
+	dossierPublic = typo3conf/ext/e_package/Resources/Public
+	dossierLangue = typo3conf/ext/e_package/Resources/Private/Language
+	dossierTemplate = typo3conf/ext/e_package/Resources/Private/Templates
+}

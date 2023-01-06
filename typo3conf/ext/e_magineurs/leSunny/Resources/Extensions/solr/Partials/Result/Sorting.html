@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+
+<f:section name="Sorting">
+	<!-- Start template : Extensions/solr/Partials/Results/Sorting.html -->
+	<li class="nav-item dropdown">
+    	<button class="dropdown-toggle btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><s:translate key="sorting_sortBy">Sorting</s:translate></button>
+		<ul class="dropdown-menu">
+			<f:for each="{resultSet.sortings}" as="sorting">
+				<li class="dropdown-item ">
+					<f:if condition="{sorting.isResetOption}">
+						<f:then>
+							<a href="{s:uri.sorting.removeSorting()}" class="solr-ajaxified">{sorting.label}</a>
+						</f:then>
+
+						<f:else>
+							<f:if condition="{sorting.selected}">
+								<f:then>
+									<a href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.oppositeDirection)}" class="solr-ajaxified">
+										<f:if condition="{sorting.isAscDirection}">
+											<f:then><img width="8" height="8" alt="sort ascending" src="{f:uri.resource(extensionName: 'solr', path: 'Images/IndicatorUp.png')}"></f:then>
+											<f:else><img width="8" height="8" alt="sort ascending" src="{f:uri.resource(extensionName: 'solr', path: 'Images/IndicatorDown.png')}"></f:else>
+										</f:if>
+										[{sorting.label}]
+									</a>
+								</f:then>
+								<f:else>
+									<a href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.direction)}" class="solr-ajaxified">{sorting.label}</a>
+								</f:else>
+							</f:if>
+						</f:else>
+					</f:if>
+				</li>
+			</f:for>
+		</ul>
+	</li>
+	<!-- End template : Extensions/solr/Partials/Results/Sorting.html -->	
+</f:section>

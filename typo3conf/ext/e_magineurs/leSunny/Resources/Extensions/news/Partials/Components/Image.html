@@ -1,0 +1,89 @@
+
+<f:section name="list">     
+        <f:variable name="ImgPlaceholder">
+            <f:uri.image src="{settings.variables.dossierPublic.value}/Images/placeholder-image.svg"/>
+        </f:variable>
+
+        <f:if condition="{data.newsItem.falMedia}">
+            <f:then>
+                <f:alias map="{mediaElement: '{data.newsItem.falMediaPreviews.0}'}">                         
+                    <f:variable name="ImgDesktop">
+                        <f:uri.image image="{mediaElement}" width="{widthBig}c" height="{heightBig}c"/>
+                    </f:variable>
+                    <f:variable name="ImgSmall">
+                        <f:uri.image image="{mediaElement}" width="{widthSmall}c" height="{heightSmall}c"/>
+                    </f:variable>
+                    <f:render partial="Components/Image" section="Picture" arguments="{_all}" />
+                </f:alias>
+            </f:then>
+            <f:else>
+                <f:variable name="ImgDesktop">
+                    <f:uri.image src="{settings.variables.dossierPublic.value}/Images/logo.png" width="{widthBig}c" height="{heightBig}c"/>
+                </f:variable>
+                <f:variable name="ImgSmall">
+                    <f:uri.image src="{settings.variables.dossierPublic.value}/Images/logo.png" width="{widthSmall}c" height="{heightSmall}c"/>
+                </f:variable>
+                <f:render partial="Components/Image" section="Picture" arguments="{_all}" />
+            </f:else>
+        </f:if>
+</f:section>
+
+<f:section name="detail">
+    <f:variable name="ImgPlaceholder">
+        <f:uri.image src="{settings.variables.dossierPublic.value}/Images/placeholder-image.svg"/>
+    </f:variable>
+
+    <f:if condition="{data.newsItem.falMediaPreviews}">
+        <div class="img-wrap">
+            <f:alias map="{mediaElement: '{data.newsItem.falMediaPreviews.0}'}">
+
+                <f:if condition="{mediaElement.originalResource.type} == 4">
+                    <f:then>
+                        <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}" />
+                    </f:then>
+                    <f:else>
+                        <f:variable name="ImgDesktop">
+                            <f:uri.image image="{mediaElement}" width="{widthBig}"/>
+                        </f:variable>
+                        <f:variable name="ImgSmall">
+                            <f:uri.image image="{mediaElement}" width="{widthSmall}"/>
+                        </f:variable>
+
+                        <f:if condition="{mediaElement.description}">
+                            <f:then>
+                                <figure role="group" aria-label="{mediaElement.description}">
+                                    <img 
+                                        src="{ImgPlaceholder}" 
+                                        data-src="{ImgDesktop}"
+                                        class="lazyload img-fluid "
+                                        alt="{mediaElement.originalResource.alternative}"
+                                        title="{mediaElement.originalResource.title}"
+                                        width="{widthBig}" 
+                                        height="{heightBig}" />
+                                    <figcaption>{mediaElement.description}</figcaption>
+                                </figure>
+                            </f:then>
+                            <f:else>
+                                <f:render partial="Components/Image" section="Picture" arguments="{_all}" />
+                            </f:else>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </f:alias>
+        </div>
+    </f:if>
+</f:section>
+
+<f:section name="Picture">
+    <picture>
+        <source media="(max-width: 900px)" data-srcset="{ImgSmall}" />
+        <img 
+            src="{ImgPlaceholder}" 
+            data-src="{ImgDesktop}"
+            class="lazyload img-fluid "
+            alt="{mediaElement.originalResource.alternative}"
+            title="{mediaElement.originalResource.title}"
+            width="{widthBig}" 
+            height="{heightBig}" />
+    </picture>
+</f:section>

@@ -1,0 +1,64 @@
+<html data-namespace-typo3-fluid="true" lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+
+  <f:layout name="Default"/>
+
+  <f:section name="main">
+
+	<f:if condition="{configuration.insertAbove}">
+	  <f:render section="Pagination" arguments="{pagination: pagination}"/>
+	</f:if>
+
+	<f:if condition="{noObjects}">
+	  <f:then>
+		<p>{f:translate(key: 'tx_dpnglossary.no_objects_found')}</p>
+	  </f:then>
+	  <f:else>
+		<f:renderChildren arguments="{contentArguments}"/>
+	  </f:else>
+	</f:if>
+
+	<f:if condition="{configuration.insertBelow}">
+	  <f:render section="Pagination" arguments="{pagination: pagination}"/>
+	</f:if>
+
+  </f:section>
+
+
+<f:section name="Pagination">
+
+	<nav role="navigation" class="dpnglossary pagination">
+		<ul class="pagination flex-wrap" >
+			<f:for each="{pagination.pages}" as="page" iteration="iterator">
+				<f:if condition="{page.isCurrent}">
+					<f:then>
+						<li class="page-item active">
+							<span class="page-link">
+								{page.character}
+								<span class="sr-only">(active)</span>
+							</span>
+						</li>
+					</f:then>
+					<f:else>
+						<f:if condition="{page.isEmpty}">
+							<f:then>
+								<li class="page-item disabled">
+									<span class="page-link">{page.character}</span>
+								</li>
+							</f:then>
+							<f:else>
+								<li class="page-item">
+									<f:widget.link arguments="{character: page.linkCharacter}" class="page-link">{page.character}</f:widget.link>
+								</li>
+							</f:else>
+						</f:if>
+					</f:else>
+				</f:if>
+			</f:for>
+		</ul>
+	</nav>
+
+</f:section>
+
+</html>

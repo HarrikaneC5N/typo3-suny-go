@@ -1,0 +1,12 @@
+<!-- Start template : Extensions/news/Partials/Components/Teaser.html -->
+<p class="card-text">
+    <f:if condition="{newsItem.teaser}">
+        <f:then>
+            {newsItem.teaser -> f:format.crop(maxCharacters: '100', respectWordBoundaries:'1') -> f:format.raw()}
+        </f:then>
+        <f:else>
+            {newsItem.bodytext -> f:format.crop(maxCharacters: '100', respectWordBoundaries:'1') -> f:format.stripTags()}
+        </f:else>
+    </f:if>
+</p>
+<!-- End template : Extensions/news/Partials/Components/Teaser.html -->

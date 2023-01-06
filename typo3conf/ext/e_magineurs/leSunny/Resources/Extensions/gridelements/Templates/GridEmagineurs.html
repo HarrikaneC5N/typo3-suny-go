@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace package=Emagineurs\EPackage\ViewHelpers}
+
+<f:layout name="Default"/>
+	<f:section name="Main">
+		<div class="grid-container">
+			<f:for each="{children}" as="columns" key="rowNumber">
+				<div class="row grid">
+					<f:for each="{columns}" as="column" key="columnNumber" iteration="iter">
+							<f:for each="{package:phpFunc(func: 'explode', args: '{0:\'_\' , 1:\'{data.tx_gridelements_backend_layout}\'}')}" as="colonne" key="colonneNumber" iteration="iter">
+								<f:if condition="{iter.total} == 1">
+									<f:then>
+										<div class="{f:cObject(typoscriptObjectPath: 'lib.replaceColClass', data: '{sourceUid:data.tx_gridelements_backend_layout}')}">
+									</f:then>
+									<f:else>
+										<f:if condition="{colonneNumber} == {columnNumber}">
+											<div class="{f:cObject(typoscriptObjectPath: 'lib.replaceColClass', data: '{sourceUid:colonne}')}">
+										</f:if>
+									</f:else>
+								</f:if>
+							</f:for>
+							<f:for each="{column}" as="child">
+								<f:render partial="Child" arguments="{data: child.data, children: child.children, options: options, settings: settings}"/>
+							</f:for>
+						</div>
+					</f:for>
+				</div>
+			</f:for>
+		</div>
+	</f:section>
+</html>

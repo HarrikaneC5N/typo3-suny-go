@@ -1,0 +1,43 @@
+<f:layout name="Default"/>
+<f:section name="Main">
+	<f:alias map="{
+		contenuDroite: '{f:cObject(typoscriptObjectPath: \'lib.countContent\', data: {colPos: \'3\'})}',
+		col0: '{colPos: \'0\'}',
+		 col1: '{colPos: \'1\'}',
+		 col2: '{colPos: \'2\'}',
+		 col3: '{colPos: \'3\'}',
+		 col4: '{colPos: \'4\'}'
+	}">
+        <article>
+			<div class="container">
+				<div id="titreExo">
+					<f:cObject typoscriptObjectPath="lib.titrePage" />
+				</div>
+				<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col1}" />
+				<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col2}" />
+				<div class="row">
+					<f:if condition="{contenuDroite} > 1">
+						<f:then>
+							<div class="col-md-8">
+								<!--TYPO3SEARCH_begin-->
+								<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col0}" />
+								<!--TYPO3SEARCH_end-->
+							</div>
+							<div class="col-md-4">
+								<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col3}" />
+							</div>
+						</f:then>
+						<f:else>
+							<div class="col-12">
+								<!--TYPO3SEARCH_begin-->
+								<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col0}" />
+								<!--TYPO3SEARCH_end-->
+							</div>
+						</f:else>
+					</f:if>
+				</div>
+				<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col4}" />
+			</div>
+		</article>
+	</f:alias>
+</f:section>

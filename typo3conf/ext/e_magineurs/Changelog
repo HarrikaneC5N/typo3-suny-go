@@ -1,0 +1,254 @@
+7.1.22
+	- Maj Tarte Au Citron
+7.1.21
+	- Ajout gestion Google Tag Manager dans Tarte Au Citron
+	- Ajout nouveau Google Analytics 4 dans Tarte Au Citron
+7.1.20
+    - Maj typoscript pageLayout 4 + maj typoscript solr tieParameter
+7.1.19
+    - Modification des appels tsconfig/typoscript pour qu'ils soient conforme aux recommandations de la doc TYPO3
+    - Ajout du fichier Services.yaml
+    - Remplacement de tous les termes sous toutes ses formes de e_gmap par e_maps
+7.1.18
+	- Changer la constante de powermail pour changer le dossier de stockage en personnal_data/form_powermail
+	- Ajout CSS base
+	- Maj componant image et catégorie pour news et annuaires
+	- Maj css pour ne plus appeler les cdn des googles font
+	- SolR / Modifier conf pour enlever index de la géoloc dans les agendas
+	- SolR / Modifier conf pour les cat
+	- SolR / Modifier le partial de résultat pour enlever erreur appel componants
+7.1.17
+	- Maj tag
+7.1.16
+	- Maj tarte au citron
+7.1.15
+	- Correction e_magineurs
+7.1.14
+	- Migration solr.stp dans e_magineurs
+7.1.13
+	- Suppression Social Share privacy
+7.1.12
+	- correction diverses
+7.1.11
+	- correction lola : refonte organisation JS
+7.1.10
+	- correction lola : refonte organisation CSS
+7.1.9
+	- correction lola : js accessibilité
+7.1.8
+	- correction lola : Template
+7.1.7
+	- ajout htaccess dans dossier fileadmin/e_magineurs
+7.1.6
+	- correction lola : RTE
+7.1.6
+	- correction lola : solr
+7.1.5
+	- correction lola : fs media gallery
+7.1.4
+	- correction lola : fluid styled content toggle
+7.1.3
+	- correction lola : gestionDocs
+7.1.2
+	- correction lola : annuaires
+7.1.1
+	- correction lola : news
+7.0.11
+	- maj bdd v10
+7.0.10
+	- Accessibilité : maj slick slider
+7.0.9
+	- Accessibilité : maj plan site
+7.0.8
+	- Accessibilité : maj title liste fichiers
+7.0.7
+	- Accessibilité : maj powermail
+7.0.6
+	- SearchResult News : maj appel viewhelpers
+7.0.5
+	- Maj tarte au citron + fix erreur appel piwik + review shareLink
+7.0.4
+	- Maj ts solr
+7.0.3
+	- Maj gridelement avec data processing
+7.0.2
+	- fix chemin du TSConfig
+7.0.1
+	- changement gestion du TS
+7.0.0
+	- Début compatibilité v10
+	- Déplacement des hooks et commande dans e_package pour simplifier la maintenance
+	- Suppression des configurations de e_gmap
+6.2.0
+    - ajout add-on autogrow pour gérer la hauteur automatique du RTE
+6.1.9
+    - fix bug ie11 partage réseaux sociaux
+6.1.8
+    - maj conditions TS pour les erreurs et les warnings (2)
+6.1.7
+    - surchage de l'ordre des élements du menu section pour éviter le bug du sorting
+6.1.6
+    - maj bdd
+6.1.5
+    - ajout install auto powermail_cond ext_emconf.php
+6.1.4
+    - RGPD powermail : maj txt case à cocher
+6.1.3
+    - RGPD powermail : maj case à cocher
+6.1.2
+    - mise en place config accessibilite
+6.1.1
+    - maj Tabs.js pour focus le 1er champ en erreur lorqu'on clique sur next
+6.1.0
+    - maj conditions TS pour les erreurs et les warnings
+6.0.0
+    - maj accessibilite + bootstrap
+5.2.6
+    - correct errors tarte au citron
+5.2.5
+    - maj sitemap news + mise en place tarte au citron
+5.2.4
+    - ajout fonction rotation image fancybox
+5.2.3
+    - Maj gestion des erreurs page par page de powermail
+5.2.1
+    - RGPD powermail : ajout case à cocher
+5.2.0
+    - maj linkhander pour new + maj conf powermail + title file fs_media_gallery + flink external main menu + maj readme
+5.1.9
+    - Maj bdd + readme pour install V9
+5.1.8
+    - Glossaire : maj de la fonctionnalité + close crochet tsconfig + comment style flex sur body
+5.1.7
+    - Solr : maj lien détail glossaire
+5.1.6
+	- Maj conf vidage des caches via une commande ssh
+5.1.5
+	- Gestion de la clé api google maps en fonction de l'environnement
+5.1.4
+	- Ajout du fichier EmagineursCommandController.php pour vidage des caches via une commande ssh
+5.1.3
+	- correction des liens de partage (bug Firefox et Edge)
+5.1.2
+	- mise en place template extension kit
+5.1.1
+	- mise en place page interne / plan site / formulaire / gestion doc / faq
+5.1.0
+	- maj emconf, titre.stp, defaultCase, link menu, cond page uid, nettoyage Tsconfig, verif news, verif eannuaire
+5.0.0
+	- préparation à la v9
+4.1.9
+	- maj template menu principal, gestion des liens externes pour l'accessibilité
+4.1.8
+	- ajustement linkVars
+4.1.7
+	- changement clé api e_maps (changement de google) + maj template powermail vh:string.RawAndRemoveXss to vh:string.escapeLabels
+4.1.6
+	- ajout conf powermail pour le senderName et senderEmail
+4.1.5
+	- ajout extension typo3_console + maj version depends extensions
+4.1.4
+	- ajout fonction nbsp dans le RTE (ctrl + espace) pour les espaces insécables
+4.1.3
+	- ajout conf titre et fil d'ariane pour le glossaire
+4.1.2
+	- mise à jour constantes Tracking JS
+4.1.1
+	- mise à jour de la BDD (création d'un backend usergroup "webmaster")
+4.1.0
+	- mise en place modifs/nettoyage/optimisations Sophie
+4.0.19
+	- ajout du grid 100% pour l'utilisation de l'effet accordéon / toggles
+4.0.18 (apparemment il fallait mettre aussi à jour le changelog... si seulement on avait eu une vrai passation !)
+	- maj version
+	- mise en place redirection interface de connexion
+4.0.12 (encore un. le dernier pour de vrai ?)
+	- accessibilité au clavier des titres pliés dépliés
+	- mise à jour bdd.sql
+	- modification pagination scroll - ajout bouton pour les enregistrements précédents et d'une class current
+4.0.11 (vous avez fini de me faire bosser ma dernière semaine !)
+	- ajout fluid_styled_content partials header pour ajouter class bloc plié déplié
+4.0.10 (et un autre !)
+	- suppression solrfluid suggest emconf.php
+	- modification news.list.xml : ajout du namespace et des noeuds pour les événements basé sur le module http://web.resource.org/rss/1.0/modules/event/
+	- suppression readme.html
+	- optimisation icone type menu
+	- modification additionalconf.php
+4.0.9 (en fait non, encore un !)
+	- inclusion _mixins.scss de bootstrap depuis home et page .scss
+	- ajout _variables-emagineurs.scss et _variables-bootstrap.scss
+4.0.8 (dernier push de Thomas - Have fun pour la suite !)
+	- suppression async fichier langue socialshare
+	- déplacement bootstrap et tether vers le package
+	- modification sitemap.stp where pages
+	- solr.cst conf pour l'indexation des fichiers des enregistrements
+	- suppression bootstrap pour inclusion dans le package
+4.0.7
+	- ajout menu accessibilité :  aller au menu, au contenu, à la recherche
+	- modification strcuture dossier css
+4.0.6
+	- maj bdd.sql
+	- modification partials detail actualités : ajout partial metadonnes
+	- modification menufotter, menuprincipal, menusitemap.html
+	- nouvelle structure des dossiers css et inclusion de bootstrap4
+4.0.5
+	- suppression bdd.sql
+	- modification news.cst
+	- modification template menuprincipal.html
+4.0.4
+	- modification tracking.cst suite passage localong
+	- modification readme.txt
+	- début readme.html
+	- suppression constante solr suggest
+4.0.3
+	- ajout Default.html dans dossier container
+	- css stacktable
+	- constantes pour pagination lazyload
+4.0.2
+	- amélioration structure.stp
+4.0.1
+	- ajout favicon.ico par défaut
+4.0.0
+	- [BREAKING CHANGES] modification du dossier container pour fonctionner avec la conf de gridelements pour la v8 et fluid_styled_content
+3.0.9
+	- header flux rss news pour compatibilité v8
+	- maj list.xml
+3.0.8
+	- Compatibilité v8 sitemap.stp
+3.0.7
+	- Modificatino sitemap.stp : ajout where nav_hide=0 pour les pages et récursivité à 250 pour les news
+3.0.6
+	- Remplacement mf:paginate par f:paginate dans les templates flat list de fs_media_gallery
+3.0.5
+	- Ajout d'une constante emagineurs.conf.menuPrincipalLevel pour la profondeur du menu principal en fluid
+	- Ajout MenuPrincipal.html dans extensions/fluid_styled_content/Templates
+3.0.2
+	- ajout contstante pour l'autocompletion solr
+3.0.0
+	fusion avec e_kit
+2.0.4
+	- configuration de linkhandler pour Actu/Agenda, Galerie photos, Galerie vidéos et Annuaires. Les constantes utilisées sont celles du sitemap
+	- harmonisation de la pagination. La conf se fait via paginate.cst dans configuration/extension => suppression de la configuration de la pagination des constantes de news, fs_media_gallery
+	- ajout e_annuaires.cst
+	- ajout des dossiers templates/partials/layouts pour e_annuaires dans extensions/
+	- ajout d'une bdd "standard". !!ATTENTION!! Pour ne pas à avoir à modifier la conf de linkhandler/sitemap, DEPLACER les rubriques "Actualités", "Agenda", "Galerie photos" et "Galerie vidéos" de la rubrique "Exemple de contenus". Voir readme pour login et mdp
+2.0.3
+	- ajout de linkhandler
+2.0.2
+	- ajout installation recycler dans ext_emconf.php
+	- ajout d'infos dans readme.txt
+	- suprresion de page.typeNum = 0 car déjà présent dans e_package
+	- correction d'un bug sur les images de common.css de socialshareprivacy
+2.0.1
+	-	Modification de fs_media_gallery.stp de e_package pour mettre dans le TS de e_magineurs le typoscript (et le fluid) à utiliser pour afficher toutes les images d’une galerie photo dans une actu
+	-	Ajout des mediaqueries vues hier dans le fichier styles.less
+	-	Ajout d’une fonction labelform dans le fichier basepackage.js de e_package. Il suffit ensuite d’appeler labelForm(".LACLASSDUFORMULAIRE"); dans le js de e_magineurs (un exemple a été ajouté à ce fichier) pour mettre un effet sur les labels au survol et au clic (voir formulaire de recherche de http://clermontcommunaute.fr par exemple)
+	-	Modification de l’appel de scripts.js de e_magineurs pour que ce soit le dernier fichier appelé (correction d’un bug (oui Thomas, je l’avoue) sur social share privacy)
+	-	Modification du rte.txt de e_package pour agrandir la fenêtre popup des liens du backend (Merci Micka)
+	-	Modification du tsconfig.txt de e_magineurs pour prise en compte des conditions ([PIDinRootline au lieu de globalVar = TSFE:id)
+	-	Ajout de répertoires vides dans les dossier extensions/news, powemrail, fs_media_gallery, dpnglossary, emaps) pour n’avoir plus qu’à déposer les templates au bon endroit
+	-	Ajout du template de la pagination et de la conf pour utiliser la pagination de TYPO3 par défaut (typoscript ajouté pour news et fs_media_gallery). Exemple de fluid dans nomSite\Resources\Extensions\news\Templates\News\ist.html
+	-	Suppression de la meta U-UA-Compatible et ajout dans le .htaccess pour corriger une erreur w3c (merci Micka)
+	-	Modification htmlTag_setParams pour prise en compte des attributs itemscrpe de news
+	-	Jpg_quality à 65 dans l’additionalconf.php
+	-	Ajout d’exemple de TS dans strucutre.stp (récuérer l’image d’une page en fluid et récupération d’un contenu d’une page)

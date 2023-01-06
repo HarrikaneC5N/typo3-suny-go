@@ -1,0 +1,57 @@
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
+<!-- Start template : Extensions/e_gestiondocs/Partials/OrderButtons.html -->
+<f:if condition="{filter.orderBy}=={field}" >
+    <f:then>
+        <li class="border border-primary pl-2 pr-2 mr-3 mb-2">
+            <span class="mr-3">{label}</span>
+            <div class="btn-group filter" role="group" aria-label="{label}">
+                <f:form object="{filter}" name="filter" method="post" >
+                    <f:form.hidden property="keywords" />
+                    <f:form.hidden property="category" />
+                    <f:form.hidden property="folderstring" value="{filter.folder.0}" />
+                    <f:form.hidden property="orderBy" value="{field}" />
+                    <f:form.hidden property="orderDirection" value="asc" />
+                    <button class="up btn btn-link">
+                        <span aria-hidden="true">&and;</span>
+                        <span class="sr-only">{label} ascendant</span>
+                    </button>
+                </f:form>
+                <f:form object="{filter}" name="filter" method="post" >
+                    <f:form.hidden property="keywords" />
+                    <f:form.hidden property="category" />
+                    <f:form.hidden property="folderstring" value="{filter.folder.0}" />
+                    <f:form.hidden property="orderBy" value="{field}" />
+                    <f:form.hidden property="orderDirection" value="desc" />
+                    <button class="down btn btn-link">
+                        <span aria-hidden="true">&or;</span>
+                        <span class="sr-only">{label} descendant</span>
+                    </button>
+                </f:form>
+            </div>
+        </li>
+    </f:then>
+    <f:else>
+        <li class="bg-primary text-white pl-2 pr-2 mr-3 mb-2">
+            <span class="mr-3">{label}</span>
+            <div class="btn-group filter" role="group" aria-label="{label}">
+                <f:form object="{filter}" name="filter" method="post" >
+                    <f:form.hidden property="keywords" />
+                    <f:form.hidden property="category" />
+                    <f:form.hidden property="folderstring" value="{filter.folder.0}" />
+                    <f:form.hidden property="orderBy" value="{field}" />
+                    <f:form.hidden property="orderDirection" value="asc" />
+                    <button class="up btn btn-primary">&and;<span class="sr-only">{label} ascendant</span></button>
+                </f:form>
+                <f:form object="{filter}" name="filter" method="post" >
+                    <f:form.hidden property="keywords" />
+                    <f:form.hidden property="category" />
+                    <f:form.hidden property="folderstring" value="{filter.folder.0}" />
+                    <f:form.hidden property="orderBy" value="{field}" />
+                    <f:form.hidden property="orderDirection" value="desc" />
+                    <button class="down btn btn-primary">&or;<span class="sr-only">{label} descendant</span></button>
+                </f:form>
+            </div>
+        </li>
+    </f:else>
+</f:if>
+<!-- End template : Extensions/e_gestiondocs/Partials/OrderButtons.html -->

@@ -1,0 +1,55 @@
+{namespace annuaire=Emagineurs\EAnnuaires\ViewHelpers}
+<html data-namespace-typo3-fluid="true" lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<dl class="glossary">
+<f:for each="{terms}" as="term">
+    <f:alias map="{arguments: '{0:\' \', 1:term.name}'}" >
+        <f:alias map="{arrayTermName: 'annuaire:PhpFunc func=\'explode\'  args=\'{arguments}\' />'}" >
+            <dt>{term.name}</dt>
+            <dd>
+            <f:if condition="{term.synonyms}">
+                <span>Synonymes</span>
+                <f:translate key="LLL:{settings.dossierLangue}/locallang.xlf:glossaryTags" /> : <i>{f:if(condition: synonymIterator.isLast, then: '{synonym.name}', else: '{synonym.name}, ') -> f:for(each: term.synonyms, iteration: 'synonymIterator', as: 'synonym')}</i></i>
+            </f:if>
+            <f:if condition="{term.termType}">
+                  {f:translate(key: 'tx_dpnglossary_domain_model_term.term_type')}: <i>{term.termType}</i>
+              </f:if>
+              <f:if condition="{term.termLang}">
+                {f:translate(key: 'tx_dpnglossary_domain_model_term.term_lang')}: <i>{term.termLang}</i>
+              </f:if>
+            <f:for each="{term.descriptions}" as="description">
+                <div class="description">
+                    <div class="text no_glossary">
+                        <f:if condition="{description.meaning}">Signification :  <span><i>{description.meaning}</i></span></f:if>
+                        <f:format.html>{description.text}</f:format.html>
+                    </div>
+                </div>
+            </f:for>      
+            <f:if condition="{term.media}">
+                <f:for each="{term.media}" as="file">
+                    <br />
+                    <div class="mediafile">
+                        <p class="download-link">
+                            <span>Télécharger le fichier : </span>
+                            <a href="{file.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank" title="{f:if(condition:file.originalResource.title, then:file.originalResource.title, else:file.originalResource.name)} (nouvelle fenêtre)">
+                                {f:if(condition:file.originalResource.title, then:file.originalResource.title, else:file.originalResource.name)}
+                            </a>
+                        </p>
+                        <f:for each="{term.media}" as="media">
+                        <div class="mediafile">
+                          
+                          <f:media file="{media}" title="{media.title}" alt="{media.alt}" width="700" height="m300"/>
+                         
+                        </div>
+                      </f:for>
+                    </div>
+                </f:for>
+            </f:if>
+            </dd>
+        </f:alias>
+    </f:alias>
+</f:for>
+</dl>
+
+</html>

@@ -1,0 +1,20 @@
+{
+    "name": "typo3/e_xcellent",
+    "authors": [
+        {
+           "name": "Harri",
+           "role": "Developer"
+        }
+    ],
+    "type": "typo3-cms-extension",
+    "description": "A Store Inventory Example for Programming with Extbase.",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+           "Typo3\\E_xcellent\\": "Classes/"
+        }
+    },
+    "require": {
+        "typo3/cms-core": ">=10.4 <11.0.0"
+    }
+}

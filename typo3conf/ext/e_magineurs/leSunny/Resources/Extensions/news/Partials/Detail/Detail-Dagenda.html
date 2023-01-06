@@ -1,0 +1,94 @@
+{namespace emaps=Emagineurs\EMaps\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers" xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper" data-namespace-typo3-fluid="true">
+<!-- Start template : Extensions/news/Partials/Detail/Detail-agendaD.html -->
+<article class="detail detail-news detail-agendaD">
+    <div class="row">
+        <div class="col-12">
+            <f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+            <f:render partial="Components/Image" section="detail" arguments="{
+                data: _all,
+                widthSmall: '320',
+                widthBig: '767'
+            }" />
+        </div>
+        <div class="col-12">
+            <f:render partial="Components/Categories" section="detail" arguments="{_all}" />
+            <f:if condition="{newsItem.teaser}">
+                <div class="chapo" itemprop="description">
+                    <f:format.html>{newsItem.teaser}</f:format.html>
+                </div>
+            </f:if>
+        </div>
+        <div class="col-12">
+            <div class="text-wrap" itemprop="articleBody">
+                <f:format.html>{newsItem.bodytext}</f:format.html>
+            </div>
+            <f:if condition="{newsItem.relatedFsmediaalbums}">
+                <div class="fs-media-gallery">
+                    <f:for each="{newsItem.relatedFsmediaalbums}" as="mediaAlbum" iteration="itemIteration">
+                        <div class="related_galery">
+                            <h2 class="name">{mediaAlbum.title}</h2>
+                            <div class="row no-gutters">
+                                <f:cObject typoscriptObjectPath="lib.fsMediaGalleryNews" data="{sourceUid:mediaAlbum.uid}" />
+                            </div>
+                        </div>
+                    </f:for>
+                </div>
+            </f:if>
+            <f:if condition="{newsItem.calameoHtml}">
+                <div class="calameo">
+                    <div class="related_iframe embed-responsive embed-responsive-16by9">
+                        <f:format.raw>{newsItem.calameoHtml}</f:format.raw>
+                    </div>
+                </div>
+            </f:if>
+            <f:if condition="{newsItem.iframe}">
+                <div class="iframe">
+                    <f:if condition="{newsItem.iframetitle}">
+                        <h2 class="name">{newsItem.iframetitle}</h2>
+                    </f:if>
+                    <div class="related_iframe embed-responsive embed-responsive-16by9">
+                        <f:format.raw>{newsItem.iframe}</f:format.raw>
+                    </div>
+                </div>
+            </f:if>
+            
+            
+            <f:render partial="Components/Gallery" arguments="{_all}" />
+
+            <f:if condition="{newsItem.schedules}">
+                <div class="card card--annexe">
+                    <div class="card-header">
+                        <h2 class="card-annexe--title">Horaires</h2>
+                    </div>
+                    <div class="card-body">
+                        <f:format.html>{newsItem.schedules}</f:format.html>
+                    </div>
+                </div>
+            </f:if>
+            <f:if condition="{newsItem.lat}">
+                <div class="card card-annexe">
+                    <div class="card-header">
+                        <h2 class="card-annexe--title">Où ?</h2>
+                    </div>
+                    <div class="card-body">
+                        <f:if condition="{newsItem.placename}"><span>{newsItem.placename}</span></f:if>
+                        <f:if condition="{newsItem.placeadress}"><span>
+                                <f:format.stripTags>{newsItem.placeadress}</f:format.stripTags>
+                            </span></f:if>
+                        <f:if condition="{newsItem.town}"><span>{newsItem.town}</span></f:if>
+                    </div>
+                </div>
+            </f:if>
+            
+            <f:render partial="Components/Poi" arguments="{_all}" />
+
+            <f:render partial="Components/Related" arguments="{_all}" />
+        </div>
+        
+
+        <f:render partial="Components/Back" arguments="{_all}" />
+    </div>
+</article>
+<!-- End template : Extensions/news/Partials/Detail/Detail-agendaD.html -->
+</html>

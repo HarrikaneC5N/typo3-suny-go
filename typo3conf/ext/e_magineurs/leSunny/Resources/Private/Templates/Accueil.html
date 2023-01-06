@@ -1,0 +1,36 @@
+<f:layout name="Default"/>
+<f:section name="Main">
+
+	<!--TYPO3SEARCH_begin-->
+	<f:alias map="{contenuDroite: '{f:cObject(typoscriptObjectPath: \'lib.countContent\', data: {colPos: \'2\'})}', col0: '{colPos: \'0\'}', col1: '{colPos: \'1\'}', col2: '{colPos: \'2\'}', col3: '{colPos: \'3\'}'}">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col3}" />
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col0}" />
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col1}" />
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{col2}" />
+				</div>
+			</div>
+		</div>
+	</f:alias>
+	<!--TYPO3SEARCH_end-->
+</f:section>

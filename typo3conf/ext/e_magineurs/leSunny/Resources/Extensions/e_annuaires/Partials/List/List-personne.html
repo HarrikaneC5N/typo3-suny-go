@@ -1,0 +1,76 @@
+{namespace emaps=Emagineurs\EMaps\ViewHelpers}
+
+<f:section name="list">
+<!-- Start template : Extensions/e_annuaires/Partials/List/List-personne.html / section : list -->
+    <div class="list list-{settings.templateLayoutListe} list-annuaire lazyLoadContainer row">
+        <f:if condition="{settings.menu_abc}">
+            <f:then>
+                <annuaire:widget.paginate objects="{fiches}" field="title" as="paginatedTerms">
+                    <div class="menu_abc row">
+                        <f:for each="{paginatedTerms}" as="fiche" iteration="iterator">
+                            <f:render section="card" arguments='{fiche:fiche}' />
+                        </f:for>
+                    </div>
+                </annuaire:widget.paginate>
+            </f:then>
+            <f:else>
+                <f:if condition="{settings.pageBrowser}">
+                    <f:then>
+                        <f:widget.paginate objects="{fiches}" as="paginatedFiches" configuration="{settings.list.paginate}">
+                            <f:for each="{paginatedFiches}" as="fiche" iteration="iterator">
+                                <f:render section="card" arguments='{fiche:fiche}'/>
+                            </f:for>
+                        </f:widget.paginate>
+                    </f:then>
+                    <f:else>
+                        <f:for each="{fiches}" as="fiche" iteration="iterator">
+                            <f:render section="card" arguments='{fiche:fiche}'/>
+                        </f:for>
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </div>
+    <!-- End template : Extensions/e_annuaires/Partials/List/List-personne.html / section : list -->
+</f:section>
+
+<f:section name="card">
+<!-- Start template : Extensions/e_annuaires/Partials/List/List-personne.html / section : card -->
+<article class="col-sm-6 col-md-4 lazyLoadItem">
+    <f:link.action pageUid="{settings.detailPid}" action="show" arguments="{fiche : fiche}" class="card card-annuaire card-personne">
+        <div class="card-body order-2">           
+            <h2>
+                {fiche.title}
+            </h2>
+            <f:render partial="Components/Categories" section="list" arguments="{fiche:fiche, settings:settings}" />
+            
+            <ul class="list-group list-group-flush">
+                <f:if condition="{fiche.phone}">
+                    <li class="list-group-item">{fiche.phone}</li>
+                </f:if>
+                <f:if condition="{fiche.email}">
+                    <li class="list-group-item">{fiche.email}</li>
+                </f:if>
+                <f:if condition="{fiche.address}">
+                    <li class="list-group-item">{fiche.address}</li>
+                </f:if>
+                <f:if condition="{fiche.city}">
+                    <f:for each="{fiche.city}" as="ville">
+                        <li class="list-group-item">{ville.zipcode} {ville.title}</li>
+                    </f:for>
+                </f:if>
+            </ul>
+        </div> 
+        <div class="order-1">
+            <f:render partial="Components/Image" section="list" arguments="{
+                data: _all, 
+                widthSmall: '320c',
+                heightSmall: '207c',
+                widthBig: '550c',
+                heightBig: '320c'
+            }" />
+        </div>
+    </f:link.action>
+</article>
+<!-- End template : Extensions/e_annuaires/Partials/List/List-personne.html / section : card -->
+</f:section>

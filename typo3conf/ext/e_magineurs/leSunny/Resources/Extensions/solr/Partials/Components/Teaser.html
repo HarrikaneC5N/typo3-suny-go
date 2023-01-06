@@ -1,0 +1,16 @@
+<!-- Start template : Extensions/solr/Partials/Components/Teaser.html -->
+<f:if condition="{document.teaser_textS}">
+    <f:then>
+        <p class="card-text no_glossary">
+            <f:format.crop maxCharacters="75" append="&nbsp;...">{s:document.highlightResult(resultSet:resultSet, document:document, fieldName:'teaser_textS')}</f:format.crop>
+        </p>
+    </f:then>
+    <f:else>
+        <f:if condition="{document.content}">
+            <p class="card-text no_glossary">
+                <f:format.crop maxCharacters="75" append="&nbsp;...">{s:document.highlightResult(resultSet:resultSet, document:document, fieldName:'content')}</f:format.crop>
+            </p>
+        </f:if>
+    </f:else>
+</f:if>
+<!-- End template : Extensions/solr/Partials/Components/Teaser.html -->

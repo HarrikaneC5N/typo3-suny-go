@@ -1,0 +1,28 @@
+/*======================================
+E-MAGINEURS
+Home page
+======================================*/
+
+/* Niveau 1 : global */
+@import "01_global/variables";
+@import "01_global/mixins";
+@import "01_global/reset";
+@import "01_global/typography";
+@import "01_global/global";
+@import "01_global/header";
+@import "01_global/footer";
+
+/* Niveau 2 : components */
+@import "02_components/button";
+@import "02_components/table";
+@import "02_components/breadcrumbs";
+@import "02_components/gallery";
+@import "02_components/social";
+@import "02_components/form";
+@import "02_components/accessibility";
+@import "02_components/accordion";
+@import "02_components/paginate";
+@import "02_components/sitemap";
+
+/* Niveau 3 : vues */
+@import "03_views/home";

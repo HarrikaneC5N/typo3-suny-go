@@ -1,0 +1,43 @@
+<!-- Start template : Extensions/solr/Partials/Components/Date.html -->
+<f:if condition="{document.datedebut_stringS} || {document.datefin_stringS}">
+    <f:then>
+        <p class="date">
+            <f:if condition="<f:format.date format='U'>{document.datedebut_stringS}</f:format.date> > 0">
+                <f:then>
+                    <f:if condition="<f:format.date format='U'>{document.datefin_stringS}</f:format.date> > 0">
+                        <f:then>
+                            <f:if condition="<f:format.date format='U'>{document.datedebut_stringS}</f:format.date> == <f:format.date format='U'>{document.datefin_stringS}</f:format.date>">
+                                <f:then>
+                                    <span class="small">
+                                        <f:format.date format="d/m/Y">{document.datedebut_stringS}</f:format.date>
+                                    </span>
+                                </f:then>
+                                <f:else>
+                                    <span class="small">Du <f:format.date format="d/m/Y">{document.datedebut_stringS}</f:format.date> au <f:format.date format="d/m/Y">{document.datefin_stringS}</f:format.date></span>
+                                </f:else>
+                            </f:if>
+                        </f:then>
+                        <f:else>
+                            <span class="small">A partir du <f:format.date format="d/m/Y">{document.datedebut_stringS}</f:format.date></span>
+                        </f:else>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <f:if condition="<f:format.date format='U'>{document.datefin_stringS}</f:format.date> > 0">
+                        <span class="small">Jusqu'au <f:format.date format="d/m/Y">{document.datefin_stringS}</f:format.date></span>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </p>
+    </f:then>
+    <f:else>
+        <p class="date">
+            <f:if condition="{document.date_stringS}">
+                <span class="small">
+                    <f:format.date format="d/m/Y">{document.date_stringS}</f:format.date>
+                </span>
+            </f:if>
+        </p>
+    </f:else>
+</f:if>
+<!-- End template : Extensions/solr/Partials/Components/Date.html -->

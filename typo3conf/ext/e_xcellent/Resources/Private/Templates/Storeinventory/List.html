@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Public/Css/Globelcss.css">
+    <title>Document</title>
+</head>
+<body>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="">Model</th>
+            <th class="">Description</th>
+            <th class="">Quantités en stock</th>
+            <th class="">Prix €</th>
+            <th class="">Qualité du bail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <f:for each="{products}" as="product">
+            <tr class="tableCaseProduct">
+                <td> {product.name}</td>
+                <td>
+                    <f:format.crop maxCharacters="5">{product.description}</f:format.crop>
+                </td>
+                <td>{product.quantity}° </td>
+                <td>{product.totalprice} </td>
+                <td> Excellent mec </td>
+            </tr>
+        </f:for>
+    </tbody>
+</table>
+</body>
+</html>
+!

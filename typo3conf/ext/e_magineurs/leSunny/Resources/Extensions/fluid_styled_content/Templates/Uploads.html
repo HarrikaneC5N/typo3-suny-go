@@ -1,0 +1,80 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+	<f:if condition="{files}">
+		<ul class="list-group">
+			<f:for each="{files}" as="file" iteration="fileIterator">
+				<f:switch expression="{data.uploads_type}">
+					<f:case value="0"><li class="only-name list-group-item"></f:case>
+					<f:case value="1"><li class="extension list-group-item"></f:case>
+					<f:case value="2"><li class="thumbnail list-group-item"></f:case>
+					<f:defaultCase><li class="only-name list-group-item"></f:defaultCase>
+				</f:switch>
+					<f:if condition="{data.uploads_type} == 1">
+						<f:if condition="{file.extension}==pdf">
+							<f:image src="{dossierPublic}/Images/upload_pdf.png" width="49" height="64" class="float-left mr-3"class="float-left mr-3"/>
+						</f:if>
+						<f:if condition="{file.extension}==gif">
+							<f:image src="{dossierPublic}/Images/upload_gif.png" width="49" height="64" class="float-left mr-3"/>
+						</f:if>
+						<f:if condition="{file.extension}==jpg || {file.extension}==jpeg">
+							<f:image src="{dossierPublic}/Images/upload_jpg.png" width="49" height="64" class="float-left mr-3"/>
+						</f:if>
+						<f:if condition="{file.extension}==png">
+							<f:image src="{dossierPublic}/Images/upload_png.png" width="49" height="64" class="float-left mr-3"/>
+						</f:if>
+						<f:if condition="{file.extension}==tif || {file.extension}==bmp">
+							<f:image src="{dossierPublic}/Images/upload_img.png" width="49" height="64" class="float-left mr-3"/>
+						</f:if>
+						<f:if condition="{file.extension}==doc || {file.extension}==docx">
+							<f:image src="{dossierPublic}/Images/upload_doc.png" width="49" height="64" class="float-left mr-3"/>
+						</f:if>
+						<f:if condition="{file.extension}==ppt || {file.extension}==pptx">
+							<f:image src="{dossierPublic}/Images/upload_ppt.png" width="49" height="64" class="float-left mr-3"/>
+						</f:if>
+						<f:if condition="{file.extension}==xls || {file.extension}==xlsx || {file.extension}==ods || {file.extension}==odp">
+							<f:image src="{dossierPublic}/Images/upload_xls.png" width="49" height="64" class="float-left mr-3"/>
+						</f:if> 
+						<f:if condition="{file.type}==4">
+							<f:if condition="{file.extension}==mp4">
+								<f:then>
+									<f:image src="{dossierPublic}/Images/upload_mp4.png" width="49" height="64" class="float-left mr-3"/>
+								</f:then>
+								<f:else>
+									<f:image src="{dossierPublic}/Images/upload_video.png" width="49" height="64" class="float-left mr-3"/>
+								</f:else>
+							</f:if>
+						</f:if>
+					</f:if>
+					<f:if condition="{data.uploads_type} == 2">
+						<f:if condition="{f:uri.image(src: 'file:{f:if(condition: file.originalFile, then: \'file:{file.originalFile.uid}\', else: \'file:{file.uid}\')}')} != '/'">
+							<f:then>
+								<f:media file="{file}" width="75" alt="{file.properties.alternative}" class="float-left mr-3"/>
+							</f:then>
+							<f:else>
+								<img src="{f:uri.resource(path: 'Icons/FileIcons/{file.extension}.gif', extensionName: 'frontend')}" alt="" class="float-left mr-3">
+							</f:else>
+						</f:if>
+					</f:if>
+					<div>
+						<a href="{file.publicUrl}" class="d-block" title="{f:if(condition: file.properties.title, then: file.properties.title, else: file.name) -> f:format.htmlspecialchars()} ({file.properties.extension} - <f:format.bytes value='{file.properties.size}' />)">
+							<span class="lead">{f:if(condition: file.properties.title, then: file.properties.title, else: file.name) -> f:format.htmlspecialchars()}</span>
+						</a>
+						<f:if condition="{file.properties.description}">
+							<f:if condition="{data.uploads_description}">
+								<span class="ce-uploads-description">{file.properties.description}</span>
+							</f:if>
+						</f:if>
+						<f:if condition="{data.filelink_size}">
+							<div class="ce-uploads-properties">
+								<span>({file.properties.extension}</span> - <f:format.bytes value="{file.properties.size}" />)
+							</div>
+						</f:if>
+					</div>
+				</li>
+			</f:for>
+		</ul>
+	</f:if>
+
+</f:section>
+</html>

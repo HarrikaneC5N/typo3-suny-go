@@ -1,0 +1,18 @@
+{namespace webtv=Emagineurs\EAnnuaires\ViewHelpers}
+<!-- Start template : Extensions/e_annuaires/Partials/Fiche/Detail-video.html -->
+<article class="detail detail-{settings.templateLayoutDetail} detail-annuaire">
+    <div class="row">
+        <f:render partial="Components/Video" arguments="{fiche:fiche, settings:settings}"  />
+        <div class="col-12">
+            <f:if condition="{fiche.cell}">
+                <span>{fiche.cell}</span>
+            </f:if>
+            <f:render partial="Components/Categories" section="detail" arguments="{fiche:fiche, settings:settings}"  />
+            <f:if condition="{fiche.description}">
+                <f:format.html>{fiche.description}</f:format.html>
+            </f:if>
+        </div>
+        <f:render partial="Components/Back" arguments=" {fiche}" />
+    </div>
+</article>
+<!-- End template : Extensions/e_annuaires/Partials/Fiche/Detail-video.html -->

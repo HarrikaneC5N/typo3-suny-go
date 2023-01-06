@@ -1,0 +1,51 @@
+/* Titre */
+h1, .h1{
+    margin-bottom: $margin/3;
+    line-height: $line-height-title;
+    font-size: rem($h1-size*$font-ratio);
+    @include bp-min-large{
+        font-size: rem($h1-size);
+        margin-bottom: $margin/2;
+    }
+}
+h2, .h2{
+    line-height: $line-height-title;
+    font-size: rem($h2-size*$font-ratio);
+    display: block;
+    @include bp-min-large{
+        font-size: rem($h2-size);
+    }
+    /* Le chapo est un h2 -> voir avec Larry */
+    &.chapo{
+        font-size: rem($chapo-size);
+    }
+}
+h3, .h3{
+    font-size: rem($h3-size*$font-ratio);
+    line-height: $line-height-title;
+    @include bp-min-large{
+        font-size: rem($h3-size);
+    }
+}
+h4, .h4{
+    line-height: $line-height-title;
+    font-size: rem($h4-size);
+}
+h5, .h5{
+    font-size: rem($h5-size);
+    line-height: $line-height-title;
+}
+
+/* Paragraphes et texte */
+p, span{
+    color: $color-text;
+    font-size: rem($p-size);
+    margin: 0;
+}
+
+/* Citation */
+blockquote{}
+
+/* Listes */
+ul{}
+ol{}

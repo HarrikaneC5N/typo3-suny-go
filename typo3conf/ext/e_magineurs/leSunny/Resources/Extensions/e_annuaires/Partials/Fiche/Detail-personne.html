@@ -1,0 +1,56 @@
+{namespace emaps=Emagineurs\EMaps\ViewHelpers}
+<!-- Start template : Extensions/e_annuaires/Partials/Fiche/Detail-personne.html -->
+<article class="detail detail-{settings.templateLayoutDetail} detail-annuaire">
+    <div class="row">
+        <div class="col-12">
+            <f:render partial="Components/Image" section="detail" arguments="{
+                data: _all,
+                widthSmall: '320',
+                widthBig: '767'
+            }" />
+        </div>
+        <div class="col-12">
+            <f:if condition="{fiche.cantonstexte}">
+                <p>{fiche.cantonstexte}</p>
+            </f:if>
+            <ul class="list-group">
+                <f:if condition="{fiche.phone}">
+                    <li class="list-group-item">{fiche.phone}</li>
+                </f:if>
+                <f:if condition="{fiche.phonesecondaire}">
+                    <li class="list-group-item">{fiche.phonesecondaire}</li>
+                </f:if>
+                <f:if condition="{fiche.fax}">
+                    <li class="list-group-item">{fiche.fax}</li>
+                </f:if>
+                <f:if condition="{fiche.email}">
+                    <li class="list-group-item">
+                        <f:link.email email="{fiche.email}">{fiche.email}</f:link.email>
+                    </li>
+                </f:if>
+                <f:if condition="{fiche.address}">
+                    <li class="list-group-item">{fiche.address}</li>
+                </f:if>
+                <f:if condition="{fiche.city}">
+                    <f:for each="{fiche.city}" as="ville">
+                        <li class="list-group-item">{ville.zipcode} {ville.title}</li>
+                    </f:for>
+                </f:if>
+                <f:if condition="{f:cObject(typoscriptObjectPath:'lib.latAnnuaires',data:'{sourceUid:fiche.uid}')}">
+                    <li class="list-group-item">
+                        <f:cObject typoscriptObjectPath="lib.paramPoiAnnuaire" data="{sourceUid: fiche.uid, pageMap: 41}" />
+                    </li>
+                </f:if>
+                <f:render partial="Components/Liens" arguments=" {_all}" />
+            </ul>
+        </div>
+        <f:render partial="Components/Categories" section="detail" arguments="{fiche:fiche, settings:settings}"/>
+        <f:if condition="{fiche.description}">
+            <div class="col-12">
+                <f:format.html>{fiche.description}</f:format.html>
+            </div>
+        </f:if>
+        <f:render partial="Components/Back" arguments=" {_all}" />
+    </div>
+</article>
+<!-- End template : Extensions/e_annuaires/Partials/Fiche/Detail-personne.html -->

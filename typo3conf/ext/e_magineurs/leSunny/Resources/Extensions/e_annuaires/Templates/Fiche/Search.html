@@ -1,0 +1,35 @@
+{namespace enews=Emagineurs\ENews\ViewHelpers}
+<f:layout name="Default"/>
+
+<f:section name="main">
+<!-- Start template : Extensions/e_annuaires/Templates/Fiche/Search.html -->
+    <f:form object="{searchObjet}" name="search" pageUid="{settings.resultPid}">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="keyWord">Par mot(s) clé(s)</label>
+                <f:form.textfield property="titre" id="keyWord" placeholder="Saisissez votre mot" class="form-control" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="annuaire-categorie">Par Thématique</label>
+                <f:switch expression="{settings.templateLayoutSearch}">
+                    
+                    <f:case value="1">
+                        <f:form.select  id="annuaire-categorie" class="custom-select" property="categoryGeneral" options="{categoryGeneral}" prependOptionLabel="Toutes les thématiques"/>
+                    </f:case>
+                    <f:case value="30">
+                        <f:form.select  id="annuaire-categorie" class="custom-select" property="categoryGeneral" options="{categoryGeneral}" prependOptionLabel="Toutes les thématiques"/>
+                    </f:case>
+                    <f:case value="40">
+                        <f:form.select  id="annuaire-categorie" class="custom-select" property="categoryGeneral" options="{categoryGeneral}" prependOptionLabel="Toutes les thématiques"/>
+                    </f:case>
+                    <f:defaultCase>
+                       <f:form.select  id="annuaire-categorie" class="custom-select" property="categoryGeneral" options="{categoryGeneral}" prependOptionLabel="Toutes les thématiques"/>
+                    </f:defaultCase>
+                <
+                </f:switch>
+            </div>
+        </div>
+        <f:form.submit value="Rechercher" title="Rechercher un résultat"/>
+    </f:form>     
+    <!-- End template : Extensions/e_annuaires/Templates/Fiche/Search.html -->              
+</f:section> 

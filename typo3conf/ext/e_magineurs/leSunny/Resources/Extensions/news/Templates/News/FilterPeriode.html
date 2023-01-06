@@ -1,0 +1,38 @@
+{namespace n=GeorgRinger\News\ViewHelpers}
+{namespace em=Emagineurs\ENews\ViewHelpers}
+
+<f:layout name="General" />
+
+<f:section name="content">
+    <f:if condition="{settings.periode} == 'Month' && {settings.navMois}">
+        <div class="navMois">
+            <div class="navMois_precedent">
+                <f:format.html><em:MoisLien label="Mois précédent" sens="precedent"/></f:format.html>
+            </div>
+            <div class="navMois_encours">
+                <em:Mois/>
+            </div>
+            <div class="navMois_suivant">
+                <f:format.html><em:MoisLien label="Mois suivant" sens="suivant"/></f:format.html>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </f:if>
+    <f:if condition="{news}">
+        <f:then>
+            <f:if condition="{settings.templateLayout} != ''">
+                <f:then>              
+                    <f:render partial="List/List-{settings.templateLayout}" section="list" arguments="{_all}" />
+                </f:then>
+                <f:else>                
+                    <f:render partial="List/List" section="list" arguments="{_all}" />
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <div class="no-news-found">
+                <f:translate key="list_nonewsfound" />
+            </div>
+        </f:else>
+    </f:if>
+</f:section>

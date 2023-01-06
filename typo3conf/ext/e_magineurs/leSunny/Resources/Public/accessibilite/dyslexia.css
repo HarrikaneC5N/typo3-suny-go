@@ -1,0 +1,16 @@
+@font-face {
+	font-family: dysReg;
+	src: url(./font-dyslexie/OpenDyslexic-Regular.otf);
+}
+@font-face {
+	font-family: dysBold;
+	src: url(./font-dyslexie/OpenDyslexic-Bold.otf);
+}
+
+* {
+	font-family: dysReg !important; 
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: dysBold !important; 
+}

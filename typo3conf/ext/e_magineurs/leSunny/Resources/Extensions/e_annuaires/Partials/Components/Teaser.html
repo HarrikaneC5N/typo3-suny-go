@@ -1,0 +1,7 @@
+<!-- Start template : Extensions/e_annuaires/Partials/Components/Teaser.html -->
+<div class="teaser">
+    <f:if condition="{fiche.description}">
+        <p class="no_glossary">{fiche.description -> f:format.crop(maxCharacters: '100', respectWordBoundaries:'1') -> f:format.stripTags()}</p>
+    </f:if>
+</div>
+<!-- End template : Extensions/e_annuaires/Partials/Components/Teaser.html -->

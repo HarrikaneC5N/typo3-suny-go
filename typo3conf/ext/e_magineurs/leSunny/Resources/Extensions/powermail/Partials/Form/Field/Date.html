@@ -1,0 +1,21 @@
+{namespace vh=In2code\Powermail\ViewHelpers}
+
+<div class="form-group powermail_fieldwrap powermail_fieldwrap_type_date powermail_fieldwrap_{field.marker} {field.css} {settings.styles.framework.fieldAndLabelWrappingClasses}">
+	<f:if condition="{field.css} != 'nolabel'">
+    	<label for="powermail_field_{field.marker}" class="{settings.styles.framework.labelClasses}">
+	        <vh:string.escapeLabels>{field.title}</vh:string.escapeLabels><f:if condition="{field.mandatory}"><span class="mandatory">*</span></f:if>
+	        <span class="description">(format attendu : jj/mm/aaaa)</span>
+	    </label>
+	</f:if>
+	<div class="btn-group {settings.styles.framework.fieldWrappingClasses}">
+		<button class="btn btn-datepicker start" title="Activer le calendrier (non accessible au clavier)">Activer le calendrier</button>
+		<f:form.textfield 
+			type="{vh:Validation.FieldTypeFromValidation(field:field)}"
+			id="powermail_field_{field.marker}" 
+			placeholder="jj/mm/aaaa" 
+			property="{field.marker}"
+			value="{vh:Misc.PrefillField(field:field, mail:mail)}"
+			class="form-control mr-3 datepicker inputDate" 
+			/>
+	</div>
+</div>

@@ -1,0 +1,59 @@
+<!-- SQtart template : Extensions/news/Partials/Components/Related.html -->
+<f:if condition="{newsItem.related}">
+    <div class="related related-news">
+        <h2 class="related--title">
+            <f:translate key="related-news" />
+        </h2>
+        <ul class="list-group">
+            <f:for each="{newsItem.related}" as="related">
+                <li class="list-group-item">
+                    <n:link newsItem="{related}" settings="{settings}" title="{related.title}">
+                        {related.title}
+                    </n:link>
+                </li>
+            </f:for>
+        </ul>
+    </div>
+</f:if>
+<f:if condition="{newsItem.falRelatedFiles}">
+    <div class="related related-files">
+        <h2 class="related--title">
+            <f:translate key="related-files" />
+        </h2>
+        <ul class="list-group">
+            <f:for each="{newsItem.falRelatedFiles}" as="relatedFile">
+                <li class="list-group-item">
+                    <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank" title="{f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)} (nouvelle fenêtre)">
+                        {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+                    </a>
+                    <div class="properties">
+                        <span>({relatedFile.originalResource.extension}</span> -
+                        <f:format.bytes value="{relatedFile.originalResource.size}" />)
+                    </div>
+                </li>
+            </f:for>
+        </ul>
+    </div>
+</f:if>
+<f:if condition="{newsItem.relatedLinks}">
+    <div class="related related-links">
+        <h2 class="related--title">
+            <f:translate key="related-links" />
+        </h2>
+        <ul class="list-group">
+            <f:for each="{newsItem.relatedLinks}" as="relatedLink">
+                <li class="list-group-item">
+                    <a href="{relatedLink.uri}" title="{relatedLink.title} (nouvelle fenêtre)" target="_blank">
+                        {f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}
+                    </a>
+                    <f:if condition="{relatedLink.description}">
+                        <div class="description">
+                            <span>{relatedLink.description}</span>
+                        </div>
+                    </f:if>
+                </li>
+            </f:for>
+        </ul>
+    </div>
+</f:if>
+<!-- End template : Extensions/news/Partials/Components/Related.html -->

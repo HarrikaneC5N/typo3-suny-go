@@ -1,0 +1,58 @@
+{
+  "name": "causal/image_autoresize",
+  "type": "typo3-cms-extension",
+  "description": "Simplify the way your editors may upload their images: no complex local procedure needed, let TYPO3 automatically resize down their huge images/pictures on-the-fly during upload (or using a scheduler task for batch processing) and according to your own business rules (directory/groups). This will highly reduce the footprint on your server and speed-up response time if lots of images are rendered (e.g., in a gallery). Features an EXIF/IPTC extractor to ensure metadata may be used by the FAL indexer even if not preserved upon resizing.",
+  "keywords": [
+    "TYPO3 CMS",
+    "image",
+    "picture",
+    "autoresize",
+    "auto-resize",
+    "upload",
+    "batch",
+    "exif",
+    "iptc",
+    "fal",
+    "footprint",
+    "performance"
+  ],
+  "homepage": "https://github.com/xperseguers/t3ext-image_autoresize",
+  "support": {
+    "issues": "https://github.com/xperseguers/t3ext-image_autoresize/issues"
+  },
+  "authors": [
+    {
+      "name": "Xavier Perseguers",
+      "email": "xavier@causal.ch",
+      "homepage": "https://www.causal.ch",
+      "role": "Developer"
+    }
+  ],
+  "license": [
+    "GPL-2.0-or-later",
+    "GPL-3.0-or-later"
+  ],
+  "require": {
+    "php": ">= 7.2.0, <= 7.4.99",
+    "ext-exif": "*",
+    "ext-json": "*",
+    "typo3/cms-core": "^8.7 || ^9.5 || ^10 || ^11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Causal\\ImageAutoresize\\": "Classes/"
+    }
+  },
+  "replace": {
+    "typo3-ter/image-autoresize": "self.version"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.1.x-dev"
+    },
+    "typo3/cms": {
+      "extension-key": "image_autoresize",
+      "cms-package-dir": "{$vendor-dir}/typo3/cms"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+	<nav role="navigation" aria-label="Menu Principal">
+		<f:if condition="{menu}">
+			<ul id="site-menu">
+				<f:for each="{menu}" as="page" iteration="iterator">
+					<li class="niveau1 {f:if(condition: page.active, then: 'active')}">
+						<f:if condition="{page.data.doktype} == 3">
+							<f:then>
+								<f:link.external uri="{page.data.url}" target="_blank" title="{page.title} (nouvelle fenêtre)">{page.title}</f:link.external>
+							</f:then>
+							<f:else>
+								<f:if condition="{page.current}">
+									<f:then>
+										<f:link.page pageUid="{page.data.uid}" title="Page active">
+											{page.title}
+										</f:link.page>
+									</f:then>
+									<f:else>
+										<f:link.page pageUid="{page.data.uid}">
+											{page.title}
+										</f:link.page>
+									</f:else>
+								</f:if>
+							</f:else>
+						</f:if>
+						<f:if condition="{page.children}">
+							<f:render section="MenuNiveau2" arguments="{menu: page.children}" />
+						</f:if>
+					</li>
+				</f:for>
+			</ul>
+		</f:if>
+	</nav>
+</f:section>
+
+<f:section name="MenuNiveau2">
+	<ul class="sousMenu">
+		<f:for each="{menu}" as="page" iteration="iterator">
+			<li class="niveau2 {f:if(condition: page.active, then: 'active')}">
+				<f:if condition="{page.data.doktype} == 3">
+					<f:then>
+						<f:link.external uri="{page.data.url}" target="_blank" title="{page.title} (nouvelle fenêtre)">{page.title}</f:link.external>
+					</f:then>
+					<f:else>
+						<f:if condition="{page.current}">
+							<f:then>
+								<f:link.page pageUid="{page.data.uid}" title="Page active">
+									{page.title}
+								</f:link.page>
+							</f:then>
+							<f:else>
+								<f:link.page pageUid="{page.data.uid}">
+									{page.title}
+								</f:link.page>
+							</f:else>
+						</f:if>
+					</f:else>
+				</f:if>
+				<f:if condition="{page.children}">
+					<f:render section="MenuNiveau3" arguments="{menu: page.children}" />
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
+</f:section>
+
+<f:section name="MenuNiveau3">
+	<ul class="sousMenu">
+		<f:for each="{menu}" as="page" iteration="iterator">
+			<li class="niveau3 {f:if(condition: page.active, then: 'active')}">
+				<f:if condition="{page.data.doktype} == 3">
+					<f:then>
+						<f:link.external uri="{page.data.url}" target="_blank" title="{page.title} (nouvelle fenêtre)">{page.title}</f:link.external>
+					</f:then>
+					<f:else>
+						<f:if condition="{page.current}">
+							<f:then>
+								<f:link.page pageUid="{page.data.uid}" title="Page active">
+									{page.title}
+								</f:link.page>
+							</f:then>
+							<f:else>
+								<f:link.page pageUid="{page.data.uid}">
+									{page.title}
+								</f:link.page>
+							</f:else>
+						</f:if>
+					</f:else>
+				</f:if>
+				<f:if condition="{page.children}">
+					<f:render section="MenuNiveau3" arguments="{menu: page.children}" />
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
+</f:section>
+
+</html>

@@ -1,0 +1,167 @@
+plugin.tx_dpnglossary {
+  view {
+    templateRootPaths {
+      0 = EXT:dpn_glossary/Resources/Private/Templates/
+      1 = {$plugin.tx_dpnglossary.view.templateRootPath}
+    }
+
+    partialRootPaths {
+      0 = EXT:dpn_glossary/Resources/Private/Partials/
+      1 = {$plugin.tx_dpnglossary.view.partialRootPath}
+    }
+
+    layoutRootPaths {
+      0 = EXT:dpn_glossary/Resources/Private/Layouts/
+      1 = {$plugin.tx_dpnglossary.view.layoutRootPath}
+    }
+  }
+
+  persistence {
+    storagePid = {$plugin.tx_dpnglossary.persistence.storagePid}
+  }
+
+  settings {
+    # Pid of the detailpage
+    detailPage = {$plugin.tx_dpnglossary.settings.detailPage}
+    # pages where terms should be searched, 0 = all
+    parsingPids = {$plugin.tx_dpnglossary.settings.parsingPids}
+    # pages where terms should NOT be searched
+    parsingExcludePidList = {$plugin.tx_dpnglossary.settings.parsingExcludePidList}
+    # special characters for the regex
+    parsingSpecialWrapCharacters = {$plugin.tx_dpnglossary.settings.parsingSpecialWrapCharacters}
+    # max replacemnet per page, default = -1 (any matches)
+    maxReplacementPerPage = {$plugin.tx_dpnglossary.settings.maxReplacementPerPage}
+    # respect max replacement when parsing synonyms
+    maxReplacementPerPageRespectSynonyms = {$plugin.tx_dpnglossary.settings.maxReplacementPerPageRespectSynonyms}
+    # Tags which content will be parsed for terms
+    parsingTags = {$plugin.tx_dpnglossary.settings.parsingTags}
+    # Tags which are not allowed as direct parent for a parsingTag
+    forbiddenParentTags = {$plugin.tx_dpnglossary.settings.forbiddenParentTags}
+    # Classes which are not allowed for the parsing tag
+    forbiddenParsingTagClasses = {$plugin.tx_dpnglossary.settings.forbiddenParsingTagClasses}
+    # Classes which are not allowed on any parent of the parsing tag
+    forbiddenParentClasses = {$plugin.tx_dpnglossary.settings.forbiddenParentClasses}
+    # Listmode normal or character grouped list
+    listmode = {$plugin.tx_dpnglossary.settings.listmode}
+    # Previewmode newest or random
+    previewmode = {$plugin.tx_dpnglossary.settings.previewmode}
+    # Previewlimit
+    previewlimit = {$plugin.tx_dpnglossary.settings.previewlimit}
+    # Disable Parser option
+    disableParser = {$plugin.tx_dpnglossary.settings.disableParser}
+    # Parse the terms synonyms
+    parseSynonyms = {$plugin.tx_dpnglossary.settings.parseSynonyms}
+    # Priorise the synonyms for parsing
+    priorisedSynonymParsing = {$plugin.tx_dpnglossary.settings.priorisedSynonymParsing}
+    # Use the origin term for content object data when parsing synonyms
+    useTermForSynonymParsingDataWrap = {$plugin.tx_dpnglossary.settings.useTermForSynonymParsingDataWrap}
+
+    useCachingFramework = 1
+
+    # Pagination settings
+    pagination {
+      characters = A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
+    }
+
+    termWraps = CASE
+    termWraps {
+      key.field = term_type
+      default = TEXT
+      default {
+        field = parsing_name
+        dataWrap = |
+        typolink {
+          useCacheHash = 0
+
+          parameter = #{field:name}
+          parameter {
+            insertData = 1
+            htmlSpecialChars = 1
+
+            override = {field:term_link}
+            override {
+              insertData = 1
+
+              if {
+                value = link
+                equals.field = term_mode
+              }
+            }
+
+            stdWrap.override < plugin.tx_dpnglossary.settings.detailPage
+            stdWrap.override.if {
+              value = 0
+              isGreaterThan < plugin.tx_dpnglossary.settings.detailPage
+              isFalse = 1
+              isFalse.if {
+                value = link
+                equals.field = term_mode
+              }
+            }
+          }
+
+          additionalParams = &tx_dpnglossary_glossary[controller]=Term&tx_dpnglossary_glossary[action]=show&tx_dpnglossary_glossary[term]={field:uid}
+          additionalParams {
+            insertData = 1
+
+            if {
+              value = 0
+              isGreaterThan < plugin.tx_dpnglossary.settings.detailPage
+              isFalse = 1
+              isFalse.if {
+                value = link
+                equals.field = term_mode
+              }
+            }
+          }
+
+          ATagParams.dataWrap = title="{field:tooltiptext}" class="dpnglossary link"
+          ATagParams.dataWrap {
+            override = title="{field:name}" class="dpnglossary link"
+            override.if.isFalse.data = field:tooltiptext
+          }
+        }
+      }
+
+      abbreviation < .default
+      abbreviation {
+        dataWrap = <abbr title="{field:tooltiptext}" lang="{field:term_lang}">|</abbr>
+        dataWrap {
+          override = <abbr title="{field:name}" lang="{field:term_lang}">|</abbr>
+          override.if.isFalse.data = field:tooltiptext
+        }
+      }
+
+      acronym < .default
+      acronym {
+        dataWrap = <acronym title="{field:tooltiptext}" lang="{field:term_lang}">|</acronym>
+        dataWrap {
+          override = <acronym title="{field:name}" lang="{field:term_lang}">|</acronym>
+          override.if.isFalse.data = field:tooltiptext
+        }
+      }
+
+      definition < .default
+      definition {
+        dataWrap = <dfn title="{field:tooltiptext}" lang="{field:term_lang}">|</dfn>
+        dataWrap {
+          override = <dfn title="{field:name}" lang="{field:term_lang}">|</dfn>
+          override.if.isFalse.data = field:tooltiptext
+        }
+      }
+    }
+  }
+}
+
+module.tx_dpnglossary.settings < plugin.tx_dpnglossary.settings
+
+["{$plugin.tx_dpnglossary.settings.addStylesheet}" == "1"]
+  page.includeCSS.dpnglossary = EXT:dpn_glossary/Resources/Public/css/styles.css
+[global]
+
+config.pageTitleProviders {
+  glossaryTerm {
+    provider = Featdd\DpnGlossary\PageTitle\TermPageTitleProvider
+    before = altPageTitle
+  }
+}

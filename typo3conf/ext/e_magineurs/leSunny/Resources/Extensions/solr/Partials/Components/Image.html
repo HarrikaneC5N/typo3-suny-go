@@ -1,0 +1,17 @@
+<!-- Start template : Extensions/solr/Partials/Components/Image.html -->
+<f:if condition="{document.thumbnail_stringM}">
+    <div class="img-wrap">
+        <img src="fileadmin{document.thumbnail_stringM.0}" alt="" class="doc">
+    </div>
+</f:if>
+<f:if condition="{document.image_textS}">
+    <div class="img-wrap order-first">
+        <f:image src="{document.image_textS}" width="200c" height="150c" alt="" />
+    </div>
+</f:if>
+<f:if condition="{document.portrait_textS}">
+    <div class="img-wrap order-first">
+        <f:image src="{document.portrait_textS}" width="200c" height="250c" alt="" />
+    </div>
+</f:if>
+<!-- End template : Extensions/solr/Partials/Components/Image.html -->

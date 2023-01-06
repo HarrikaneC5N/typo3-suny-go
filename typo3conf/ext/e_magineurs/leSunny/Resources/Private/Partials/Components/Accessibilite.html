@@ -1,0 +1,85 @@
+<!-- Start template : Private/Partials/Accessibilite.html -->
+
+<div id="bloc-a11y--content" class="modal fade" aria-labelledby="label-a11y" tabindex="-1" role="dialog" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Module d'accessibilité</h2>
+        <button id="bloc-a11y--close" class="close" data-dismiss="modal" title="Fermer le module accessibilité" >
+			<span aria-hidden="true">&times;</span>
+			<span class="sr-only">Fermer</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="block-a11y--popin">
+			<div class="custom-control custom-switch">
+				<f:if condition="{accessibilityDyslexia} != 1">
+					<f:then>
+						<input 
+							type="checkbox" 
+							class="custom-control-input" 
+							id="dyslexia-adapted"
+							title="Activer la police dyslexie">
+					</f:then>
+					<f:else>
+						<input 
+							type="checkbox" 
+							class="custom-control-input" 
+							id="dyslexia-adapted"
+							title="Désactiver la police dyslexie"
+							checked="checked">
+					</f:else>
+				</f:if>
+				<label class="custom-control-label" for="dyslexia-adapted">Police (dyslexie)</label>
+			</div>
+		</div>
+		<div class="block-a11y--popin">
+			<div class="custom-control custom-switch">
+				<f:if condition="{accessibilityContraste} != 1">
+					<f:then>
+						<input 
+							type="checkbox" 
+							class="custom-control-input" 
+							id="contraste-adapted"
+							title="Activer les contrastes renforcés">
+					</f:then>
+					<f:else>
+						<input 
+							type="checkbox" 
+							class="custom-control-input" 
+							id="contraste-adapted"
+							checked="checked"
+							title="Désactiver les contrastes renforcés">
+					</f:else>
+				</f:if>
+				<label class="custom-control-label" for="contraste-adapted">Contrastes renforcés</label>
+			</div>
+		</div>
+		<div class="block-a11y--popin">
+			<div class="custom-control custom-switch">
+				<f:if condition="{accessibilityLineheight} != 1">
+					<f:then>
+						<input 
+							type="checkbox" 
+							class="custom-control-input" 
+							id="lineheight-adapted"
+							title="Activer l'interlignage">
+					</f:then>
+					<f:else>
+						<input 
+							type="checkbox" 
+							class="custom-control-input" 
+							id="lineheight-adapted"
+							checked="checked"
+							title="Désactiver l'interlignage">
+					</f:else>
+				</f:if>
+				<label class="custom-control-label" for="lineheight-adapted">Interlignage</label>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End template : Private/Partials/Accessibilite.html -->

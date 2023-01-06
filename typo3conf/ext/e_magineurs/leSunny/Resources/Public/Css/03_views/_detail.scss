@@ -1,0 +1,18 @@
+/* Gestion des page détails des extensions (news, annuaire...) */
+/* Nomenclature : detail + detail-type + detail-numTemplate */
+.detail{
+	/* Spécificités annuaire*/
+	&.detail-annuaire{
+		&.detail-default{}
+		&.detail-lieu{}
+		&.detail-video{}
+		&.detail-personne{}
+	}
+	/* Spécificités news*/
+	&.detail-news{
+		&.detail-default{}
+		&.detail-actusD{}
+		&.detail-agendaD{}
+		&.detail-faqD{}
+	}
+}

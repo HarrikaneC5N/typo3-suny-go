@@ -1,0 +1,11 @@
+.btn{
+	&.btn-primary{
+		&:hover{}
+	}
+	&.btn-secondary{
+		&:hover{}
+	}
+	&.btn-danger{}
+	&:focus{}
+}
+a.btn{}

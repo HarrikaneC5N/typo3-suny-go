@@ -1,0 +1,16 @@
+{namespace annuaire=Emagineurs\EAnnuaires\ViewHelpers}
+<f:layout name="Default" />
+<f:section name="main">
+    <!-- Start template : Extensions/e_annuaires/Templates/Fiche/List.html -->
+    <f:flashMessages />
+    
+    <f:if condition="{settings.templateLayoutListe}">
+        <f:then>
+            <f:render partial="List/List-{settings.templateLayoutListe}" section="list" arguments="{_all}" />
+        </f:then>
+        <f:else>
+            <f:render partial="List/List" section="list" arguments="{_all}" />
+        </f:else>
+    </f:if>
+    <!-- End template : Extensions/e_annuaires/Templates/Fiche/List.html -->
+</f:section>

@@ -1,0 +1,40 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	 xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
+	 xmlns:mf="http://typo3.org/ns/MiniFranske/FsMediaGallery/ViewHelpers">
+
+	<f:section name="AlbumsList">
+		<!-- Start template : Extensions/fs_media_gallery/Partials/MediaAlbum/FlatList/AlbumList.html -->
+		<div class="albums-list">
+			<f:widget.paginate objects="{mediaAlbums}" as="paginatedAlbums" configuration="{settings.list.pagination}">
+				<f:if condition="{paginatedAlbums}">
+					<f:then>
+						<div class="list list-gallery row lazyLoadContainer">
+							<f:for each="{paginatedAlbums}" as="mediaAlbum">
+								<f:render section="AlbumPreview" arguments="{mediaAlbum:mediaAlbum}" />
+							</f:for>
+						</div>
+					</f:then>
+					<f:else>
+						<div class="alert alert-info">
+							<p><f:translate key="no_albums_found">No albums found.</f:translate></p>
+						</div>
+					</f:else>
+				</f:if>
+			</f:widget.paginate>
+		</div>
+		<!-- End template : Extensions/fs_media_gallery/Partials/MediaAlbum/FlatList/AlbumList.html -->
+	</f:section>
+
+	<f:section name="AlbumPreview">
+		<!-- Start template : Extensions/fs_media_gallery/Partials/MediaAlbum/FlatList/AlbumList.html -->
+		<f:if condition="{0:0, 1:1} == {0:mediaAlbum.assetsCount, 1:settings.list.hideEmptyAlbums}">
+			<f:else>
+				<div class="col-sm-6 col-md-4 mb-3 lazyLoadItem">
+					<f:render partial="MediaAlbum/Thumb" section="Thumb" arguments="{mediaAlbum:mediaAlbum, random:settings.list.thumb.random, width:settings.list.thumb.width, height:settings.list.thumb.height, resizeMode:settings.list.thumb.resizeMode}" />
+				</div>
+			</f:else>
+		</f:if>
+		<!-- End template : Extensions/fs_media_gallery/Partials/MediaAlbum/FlatList/AlbumList.html -->
+	</f:section>
+
+</div>

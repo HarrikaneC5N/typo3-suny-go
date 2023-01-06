@@ -1,0 +1,56 @@
+page.includeCSS {
+	fancybox = {$e_magineurs.conf.dossierPackagePublic}/Css/jquery.fancybox.min.css
+}
+page.headerData.55 = TEXT
+page.headerData.55 {
+	value (
+		<script type="text/javascript" src="typo3conf/ext/e_package/Resources/Public/JavaScript/jquery.min.js"></script>
+	)
+}
+page.includeJSFooter {
+	fancybox = {$e_package.conf.dossierPublic}/JavaScript/jquery.fancybox.min.js
+	jQueryUI = {$e_package.conf.dossierPublic}/JavaScript/jquery-ui.min.js
+	tether = {$e_package.conf.dossierPublic}/JavaScript/tether.min.js
+	bootstrap = {$e_package.conf.dossierPublic}/JavaScript/bootstrap.min.js
+	basePackage = {$e_package.conf.dossierPublic}/JavaScript/basePackage.js
+}
+
+page.meta.viewport = width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes
+
+config {
+	absRefPrefix = auto
+	prefixLocalAnchors = all
+	metaCharset = utf-8
+	doctype = html5
+	removeDefaultJS = external
+	inlineStyle2TempFile = 1
+	admPanel = {$config.admPanel}
+	debug = 0
+	cache_period = 86400
+	sendCacheHeaders = 1
+	intTarget =
+	extTarget = _blank
+	disablePrefixComment = 1
+	index_enable = 1
+	index_externals = 1
+	headerComment = {$config.headerComment}
+	additionalHeaders {
+		10.header = X-Frame-Options: SAMEORIGIN
+		20.header = Cache-Control: max-age=3600, must-revalidate
+	}
+	sys_language_uid = 0
+	language = fr
+	locale_all = fr_FR.UTF-8
+	htmlTag_langKey = fr
+	htmlTag_setParams = lang="fr" itemscope itemtype="http://schema.org/WebPage"
+	spamProtectEmailAddresses = -3
+	spamProtectEmailAddresses_atSubst = @<span style="display:none;">remove-this.</span>
+	moveJsFromHeaderToFooter = {$config.moveJsFromHeaderToFooter}
+	compressCss = {$config.compressCss}
+	compressJs = {$config.compressJs}
+	concatenateJs = {$config.concatenateJs}
+	concatenateCss = {$config.concatenateCss}
+	tx_extbase.mvc.callDefaultActionIfActionCantBeResolved = 1
+	contentObjectExceptionHandler = 0
+	frontend_editing = 1
+}

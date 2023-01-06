@@ -1,0 +1,16 @@
+/*
+tt_content.gridelements_pi1.templateName.cObject = CASE
+tt_content.gridelements_pi1.templateName.cObject {
+    key.field = tx_gridelements_backend_layout
+    default = TEXT
+    default.value = GridElement
+    1 = TEXT
+    1.value = PopularPages
+}
+*/
+
+tt_content.gridelements_pi1.templateName.cObject {
+    bloc-vert = TEXT
+    bloc-vert.value = GridVert
+    bloc-rouge < .bloc-vert
+}

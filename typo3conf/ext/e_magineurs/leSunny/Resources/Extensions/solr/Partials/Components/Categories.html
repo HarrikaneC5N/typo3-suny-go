@@ -1,0 +1,17 @@
+<!-- Start template : Extensions/solr/Partials/Components/Categories.html -->
+<f:if condition="{document.category_stringM}">
+	<p class="cat">
+		<f:for each="{document.category_stringM}" as="category" iteration="ite">
+			<f:if condition="!{ite.isLast}">
+				<f:then>
+					{category}, 
+				</f:then>
+				<f:else>
+					{category}
+				</f:else>
+			</f:if>
+		</f:for>
+	</p>
+</f:if>
+
+<!-- End template : Extensions/solr/Partials/Components/Categories.html -->

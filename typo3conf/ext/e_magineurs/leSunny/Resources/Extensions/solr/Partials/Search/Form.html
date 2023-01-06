@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+
+<f:section name="Form">
+	<div class="tx-solr-search-form" role="search">
+		<s:searchForm id="tx-solr-search-form-pi-form" additionalFilters="{additionalFilters}" suggestHeader="{s:translate(key:'suggest_header',default:'Top Results')}">
+				<f:if condition="{addPageAndLanguageId}">
+					<input type="hidden" name="L" value="{languageUid}" />
+					<input type="hidden" name="id" value="{pageUid}" />
+				</f:if>
+				<div class="input-group">
+					<input type="text" id="input-search-alone" class="tx-solr-q js-solr-q tx-solr-suggest form-control" name="{pluginNamespace}[q]" value="{q}" aria-label='Rechercher sur le site' />
+					<div class="input-group-append">
+						<button class="tx-solr-submit btn btn-primary" type="submit" title="Rechercher sur le site">
+							Rechercher
+						</button>
+					</div>
+				</div>
+		</s:searchForm>
+	</div>
+</f:section>
+
+<f:section name="FormResult">
+	<div class="tx-solr-search-form">
+		<s:searchForm id="tx-solr-search-form-pi-results" additionalFilters="{additionalFilters}" suggestHeader="{s:translate(key:'suggest_header',default:'Top Results')}">
+				<f:if condition="{addPageAndLanguageId}">
+					<input type="hidden" name="L" value="{languageUid}" />
+					<input type="hidden" name="id" value="{pageUid}" />
+				</f:if>
+				<div class="input-group">
+					<input type="text" id="input-search" class="tx-solr-q js-solr-q tx-solr-suggest form-control" name="{pluginNamespace}[q]" value="{q}" aria-label='Rechercher sur le site' />
+					<div class="input-group-append">
+						<button class="tx-solr-submit btn btn-primary" type="submit" title="Rechercher sur le site">
+							Rechercher
+						</button>
+					</div>
+				</div>
+		</s:searchForm>
+	</div>
+</f:section>

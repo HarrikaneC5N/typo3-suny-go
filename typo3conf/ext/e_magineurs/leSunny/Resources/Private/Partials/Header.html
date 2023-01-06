@@ -1,0 +1,24 @@
+<!-- Start template : Private/Partials/Header.html -->
+<!--  <f:render partial="Components/LiensEvitement" arguments="{_all}" /> -->
+
+<div id="header">
+	<div class="container">
+		<header role="banner" >
+			<!-- <f:if condition="{homePage} == {data.uid}">
+				<f:then>
+					<h1>
+						<f:image src="{dossierPublic}/Images/logo.png" alt="Accueil du site"/>
+					</h1>
+				</f:then>
+				<f:else>
+					<f:link.page pageUid="{homePage}">
+						<f:image src="{dossierPublic}/Images/logo.png" alt="Accueil du site"/>
+					</f:link.page>
+				</f:else>
+			</f:if> -->
+			<f:render partial="Components/Menu" arguments="{_all}" />
+		</header>	
+		
+	</div>
+</div> 
+<!-- End template : Private/Partials/Header.html -->

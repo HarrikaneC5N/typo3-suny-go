@@ -1,0 +1,266 @@
+{
+    "packages": [
+        {
+            "name": "helhum/config-loader",
+            "version": "v0.12.5",
+            "version_normalized": "0.12.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helhum/config-loader.git",
+                "reference": "f761ab3fcf888b9d17d679d94b14aca24fe6bfab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helhum/config-loader/zipball/f761ab3fcf888b9d17d679d94b14aca24fe6bfab",
+                "reference": "f761ab3fcf888b9d17d679d94b14aca24fe6bfab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpunit/phpunit": "^8.5",
+                "symfony/yaml": "^2.8 || ^3.3 || ^4.0 || ^5.0"
+            },
+            "suggest": {
+                "ext-yaml": "For improved performance when parsing yaml files you should use the PECL YAML Parser php extension",
+                "symfony/yaml": "To be able to parse yaml files, you will need symfony/yaml"
+            },
+            "time": "2022-02-21T15:32:39+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.0.x-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Helhum\\ConfigLoader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Generic config loader with context and environment support.",
+            "support": {
+                "issues": "https://github.com/helhum/config-loader/issues",
+                "source": "https://github.com/helhum/config-loader/tree/v0.12.5"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/helhum/19.99",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/helhum",
+                    "type": "github"
+                }
+            ],
+            "install-path": "../helhum/config-loader"
+        },
+        {
+            "name": "helhum/typo3-console",
+            "version": "v6.7.4",
+            "version_normalized": "6.7.4.0",
+            "dist": {
+                "type": "path",
+                "url": "/home/runner/work/TYPO3-Console/TYPO3-Console",
+                "reference": "be0b33687a370530655de0c8f9580c306bd16c78"
+            },
+            "require": {
+                "helhum/config-loader": ">=0.9 <0.13",
+                "php": ">=7.2",
+                "symfony/console": "^4.4 || ^5.0",
+                "symfony/process": "^4.4 || ^5.0",
+                "typo3/cms-backend": "^10.4.22",
+                "typo3/cms-core": "^10.4.22",
+                "typo3/cms-extbase": "^10.4.22",
+                "typo3/cms-extensionmanager": "^10.4.22",
+                "typo3/cms-fluid": "^10.4.22",
+                "typo3/cms-frontend": "^10.4.22",
+                "typo3/cms-install": "^10.4.22"
+            },
+            "conflict": {
+                "doctrine/dbal": "2.13.0 || 2.13.1"
+            },
+            "replace": {
+                "typo3-ter/typo3-console": "self.version"
+            },
+            "require-dev": {
+                "nimut/testing-framework": "^6.0.1",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpunit/phpunit": "^8.5.18",
+                "symfony/expression-language": "^4.4 || ^5.0",
+                "symfony/filesystem": "^4.4 || ^5.0",
+                "typo3-console/create-reference-command": "@dev",
+                "typo3-console/php-server-command": "@dev",
+                "typo3/cms-filemetadata": "^10.4.22",
+                "typo3/cms-reports": "^10.4.22"
+            },
+            "bin": [
+                "typo3cms"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-latest": "6.x-dev"
+                },
+                "typo3/cms": {
+                    "app-dir": ".Build",
+                    "web-dir": ".Build/public"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Helhum\\Typo3Console\\": [
+                        "Classes/Console/",
+                        "Classes/Compatibility/"
+                    ]
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Helhum\\Typo3Console\\Tests\\": "Tests/Console/"
+                }
+            },
+            "scripts": {
+                "set-version": [
+                    "Helhum\\Typo3Console\\Composer\\ScriptHelper::setVersion"
+                ],
+                "extension-verify-composer-json": [
+                    "Helhum\\Typo3Console\\Composer\\ScriptHelper::verifyComposerJsonOfExtension"
+                ],
+                "extension-copy": [
+                    "@extension-clean",
+                    "mkdir -p ../extension",
+                    "cp -r Resources/Private/ExtensionArtifacts/* ../extension/"
+                ],
+                "extension-build": [
+                    "@extension-copy",
+                    "@composer config repositories.console '{\"type\": \"path\", \"url\": \"'$(pwd)'\", \"options\": {\"symlink\": false}}' -d ../extension",
+                    "@composer update -d ../extension/"
+                ],
+                "extension-release": [
+                    "@extension-build",
+                    "sed -i.bak -e 's/\"typo3-console\\/extension\"/\"helhum\\/typo3-console\"/g' ../extension/composer.json",
+                    "rm ../extension/composer.lock",
+                    "rm ../extension/composer.json.bak",
+                    "rm -rf ../extension/Libraries/bin/",
+                    "rm -rf ../extension/Libraries/helhum/typo3-console/Packages/",
+                    "rm -rf ../extension/Libraries/helhum/typo3-console/Resources/Private/ExtensionArtifacts/",
+                    "rm -rf ../extension/Libraries/helhum/typo3-console/Resources/Private/Patches/",
+                    "rm -rf ../extension/Libraries/helhum/typo3-console/Tests/",
+                    "rm -rf ../extension/Libraries/helhum/typo3-console/.github/",
+                    "mv ../extension/Libraries/helhum/typo3-console/Documentation/ ../extension/"
+                ],
+                "extension-clean": [
+                    "rm -rf ../extension/*"
+                ],
+                "docs:render": [
+                    "docker-compose -f render-documentation.yml up"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Helmut Hummel",
+                    "email": "info@helhum.io",
+                    "role": "Developer",
+                    "homepage": "https://helhum.io"
+                }
+            ],
+            "description": "A reliable and powerful command line interface for TYPO3 CMS",
+            "homepage": "https://insight.helhum.io/post/104528981610/about-the-beauty-and-power-of-typo3-console",
+            "keywords": [
+                "TYPO3",
+                "cli",
+                "command",
+                "commandline",
+                "console"
+            ],
+            "support": {
+                "issues": "https://github.com/TYPO3-Console/TYPO3-Console/issues",
+                "source": "https://github.com/TYPO3-Console/TYPO3-Console",
+                "docs": "https://docs.typo3.org/p/helhum/typo3-console/main/en-us/"
+            },
+            "transport-options": {
+                "symlink": false,
+                "relative": false
+            },
+            "install-path": "../helhum/typo3-console"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v5.4.8",
+            "version_normalized": "5.4.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "597f3fff8e3e91836bb0bd38f5718b56ddbde2f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/597f3fff8e3e91836bb0bd38f5718b56ddbde2f3",
+                "reference": "597f3fff8e3e91836bb0bd38f5718b56ddbde2f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "time": "2022-04-08T05:07:18+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Executes commands in sub-processes",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/process/tree/v5.4.8"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../symfony/process"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

@@ -1,0 +1,23 @@
+/* Gestion des page détails des extensions (news, annuaire...) */
+/* Nomenclature : list + list--type + list-numTemplate */
+.list{
+	/* Spécificités annuaire*/
+	&.list-annuaire{
+		&.list-default{}
+		&.list-lieu{}
+		&.list-personne{}
+		&.list-video{}
+	}
+	/* Spécificités news*/
+	&.list-news{
+		&.list-default{}
+		&.list-actus{}
+		&.list-actushp{}
+		&.list-agenda{}
+		&.list-agendahp{}
+		&.list-faq{}
+	}
+	/* Spécifictés galleries */
+	&.list-gallery{}
+	&.list-nested{}
+}

@@ -1,0 +1,85 @@
+# Add configuration for the editor
+# For complete documentation see http://docs.ckeditor.com/#!/api/CKEDITOR.config
+imports:
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
+    - { resource: "EXT:rte_ckeditor_image/Configuration/RTE/Plugin.yaml" }
+editor:
+  externalPlugins:
+    nbsp:
+      resource: "EXT:e_package/Resources/Public/JavaScript/Plugins/nbsp.js"
+    autogrow:
+      resource: "EXT:e_package/Resources/Public/JavaScript/Plugins/autogrow/plugin.js"
+  config:
+    autoGrow_onStartup: true
+    autoGrow_maxHeight: 600
+    autoGrow_bottomSpace: 25
+    contentsCss: "EXT:e_magineurs/leSunny/Configuration/RTE/rte.css"
+    # désactive la palette de couleur
+    #colorButton_enableAutomatic: "false"
+    # couleurs
+    #colorButton_colors: "33ccff,66cc00,ff9900,ff6600,ff3399,9933cc"
+    stylesSet:
+      # block level styles
+      - { name: "Chapo", element: "p", attributes: { class: "chapo"}}
+      - { name: "Mise en avant", element: "p", attributes: { class: "text-high"}}
+      - { name: "width-p-t", element: "p", attributes: { class: "poulpe-title"}}
+      - { name: "width-p-t1", element: "p", attributes: { class: "poulpe-text-1"}}
+      - { name: "width-p-t2", element: "p", attributes: { class: "poulpe-text-2"}}
+      - { name: "just-align", element: "p", attributes: { class: "aligner-le-toutou"}}
+      - { name: "red-block", element: "p", attributes: { class: "redo-bloko"}}
+      - { name: "text-align-redo", element: "p", attributes: { class: "text-align-redo"}}
+      - { name: "pdf-link-test", element: "p", attributes: { class: "pdf-link-test"}}
+      # Inline styles
+      - { name: "Lien interne", element: "a", attributes: { class: "link-internal"}}
+      - { name: "Lien externe", element: "a", attributes: { class: "link-external"}}
+      - { name: "Table border", element: "table", attributes: { 'class': 'contenttable table table-responsive' } }
+    format_tags: "p;h2;h3;h4;h5;h6"
+    toolbarGroups:
+      - { name: styles }
+      - { name: paragraph,   groups: [list, blocks, align] }
+      - { name: basicstyles, groups: [basicstyles] }
+      - "/"
+      - { name: clipboard, groups: [undo, clipboard] }
+      - { name: cleab, groups: [cleanup] }
+      - { name: editing,   groups: [find, spellchecker] }
+      - { name: bidi }
+      - { name: links }
+      - { name: insert }
+      - { name: tools }
+      - { name: table }
+      - { name: tabletools }
+      - { name: others }
+      - { name: document,  groups: [mode] }
+    justifyClasses:
+      - text-left
+      - text-center
+      - text-right
+      - text-justify
+    extraPlugins:
+      - justify
+      - find
+      - colorbutton
+      - indentblock
+      - language
+    language_list:
+      - fr:Français
+      - en:English
+    removePlugins:
+      - font
+      - size
+    removeButtons:
+      - Strike
+      - Replace
+      - JustifyBlock
+      - Underline
+      - PasteText
+      - PasteFromWord
+      - Anchor
+      - HorizontalRule
+# Allow s and u tag
+processing:
+  allowTags:
+    - s
+    - u

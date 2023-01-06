@@ -1,0 +1,16 @@
+<f:if condition="{newsItem.poi}">
+                <div class="card card-annexe">
+                    <div class="card-header">
+                        <h2 class="card-annexe--title">Où ?</h2>
+                    </div>
+                    <div class="card-body">
+                        <f:for each="{newsItem.poi}" as="poi">
+                            <f:if condition="{poi.name}"><span>{poi.name}</span></f:if>
+                            <f:if condition="{poi.address}"><span>{poi.address}</span></f:if>
+                            <f:if condition="{poi.city}"><span>{poi.zip} {poi.city}</span></f:if>
+                        </f:for>
+                        <span>
+                            <f:cObject typoscriptObjectPath="lib.paramPoiNews" data="{sourceUid: newsItem.uid, pageMap: 41}" /></span>
+                    </div>
+                </div>
+            </f:if>

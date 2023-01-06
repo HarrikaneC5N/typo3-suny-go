@@ -1,0 +1,74 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	 xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
+	 xmlns:mf="http://typo3.org/ns/MiniFranske/FsMediaGallery/ViewHelpers">
+
+	<f:section name="Thumb">
+		<!-- Start template : Extensions/fs_media_gallery/Partials/MediaAlbum/Thumb.html -->
+		<f:link.action controller="MediaAlbum" arguments="{mediaAlbum: mediaAlbum}" class="card h-100">			
+			<div class="card-body">
+				<h2 class="lead">{mediaAlbum.title}</h2>
+				<p class="wrap_cat order-first">
+					<span class="badge badge-primary">{mediaAlbum.assetsCount} <f:translate key="assets">assets</f:translate> </span>
+					<f:if condition="{mediaAlbum.datetime}">
+						- <span class="small"><f:format.date format="d/m/Y">{mediaAlbum.datetime}</f:format.date></span>
+					</f:if>
+				</p>
+				<p class="no_glossary">{mediaAlbum.webdescription -> f:format.crop(maxCharacters: '100', respectWordBoundaries:'1') -> f:format.stripTags()}</p>
+			</div>
+			<div class="img-wrap order-first">
+				<f:if condition="{random}">
+					<f:then>
+						<f:render partial="MediaAsset/Detail" section="ListFlat" arguments="{alt:mediaAlbum.title,title:mediaAlbum.title,mediaAsset:mediaAlbum.randomAsset,width:width,height:height,resizeMode:resizeMode}" />
+					</f:then>
+					<f:else>
+						<f:render partial="MediaAsset/Detail" section="ListFlat" arguments="{alt:mediaAlbum.title,title:mediaAlbum.title,mediaAsset:mediaAlbum.mainAsset,width:width,height:height,resizeMode:resizeMode}" />
+					</f:else>
+				</f:if>
+			</div>
+			<div class="card-footer">
+				<span class="btn btn-primary"> Voir la suite </span>
+			</div>
+		</f:link.action>
+		<!-- End template : Extensions/fs_media_gallery/Partials/MediaAlbum/Thumb.html -->
+	</f:section>
+
+	<f:section name="ThumbNested">
+		<!-- Start template : Extensions/fs_media_gallery/Partials/MediaAlbum/Thumb.html -->
+		<a href="fileadmin/{mediaAlbum.assets.0.identifier}" data-fancybox="galerie" data-caption="{f:if(condition: '{mediaAlbum.assets.0.properties.title}', then: '{mediaAlbum.assets.0.properties.title} -')} {mediaAlbum.title}" class="border row no-gutters p-3">
+			<div class="content col-md-6 col-lg-8 px-2">
+				<h2 class="lead">{mediaAlbum.title}</h2>
+				<p>				
+					<span class="badge badge-primary">{mediaAlbum.assetsCount} <f:translate key="assets">assets</f:translate></span>
+					<f:if condition="{mediaAlbum.datetime}">
+						 -  <span class="small"><f:format.date format="d/m/Y">{mediaAlbum.datetime}</f:format.date></span>
+					</f:if>
+				</p>
+				<p class="no_glossary">{mediaAlbum.webdescription -> f:format.crop(maxCharacters: '100', respectWordBoundaries:'1') -> f:format.stripTags()}</p>
+			</div>
+			<div class="img-wrap order-first col-md-6 col-lg-4">
+				<f:if condition="{random}">
+					<f:then>
+						<f:render partial="MediaAsset/Detail" section="ListNested" arguments="{alt:mediaAlbum.title,title:mediaAlbum.title,mediaAsset:mediaAlbum.randomAsset,width:width,height:height,resizeMode:resizeMode}" />
+					</f:then>
+					<f:else>
+						<f:render partial="MediaAsset/Detail" section="ListNested" arguments="{alt:mediaAlbum.title,title:mediaAlbum.title,mediaAsset:mediaAlbum.mainAsset,width:width,height:height,resizeMode:resizeMode}" />
+					</f:else>
+				</f:if>
+			</div>
+		</a>
+		<ul class="assets d-none">
+			<f:for each="{mediaAlbum.assets}" as="assets" iteration="ite">
+				<f:if condition="{ite.isFirst}">
+					<f:then></f:then>
+					<f:else>
+						<li>
+							<a href="fileadmin/{assets.identifier}" data-fancybox="galerie" data-fancybox="albumUid-{mediaAlbum.uid}" data-caption="{f:if(condition: '{assets.properties.title}', then: '{assets.properties.title} -')} {mediaAlbum.title}">{assets.name}</a>
+						</li>
+					</f:else>
+				</f:if>
+			</f:for>
+		</ul>
+		<!-- End template : Extensions/fs_media_gallery/Partials/MediaAlbum/Thumb.html -->		
+	</f:section>
+
+</div>

@@ -1,0 +1,71 @@
+{namespace v=Emagineurs\EGestiondocs\ViewHelpers}
+<f:if condition="{isSearch}" >
+	<f:if condition="{f:count(subject: documents)} > 0" >
+		<f:then>
+			<p>Il y a <f:count subject="{documents}" /> 
+				<f:if condition="{f:count(subject:documents)} > 1">
+					<f:then>résultats </f:then>
+					<f:else>résultat </f:else>
+				</f:if>
+				<f:if condition="{filter.keywords}">
+					pour <strong>"{filter.keywords}"</strong>
+				</f:if>
+				<f:if condition="{filter.category}">
+					sur la thématique <strong>"{filter.category.title}"</strong>
+				</f:if>
+			</p>
+		</f:then>
+		<f:else>
+			Aucun résultat pour votre recherche
+		</f:else>
+	</f:if>
+</f:if>
+
+<div>
+    <ul class="list-unstyled">
+        <f:for each="{foldersList}" as="folder" >
+            <li>
+                <f:link.action arguments="{folder: folder.combinedIdentifier,category: filter.category,keywords: filter.keywords}" class="btn btn-dark mb-2">
+		            {folder.name}
+		        </f:link.action>
+                <f:if condition="{folder.subfolders}" >
+                    <f:render partial="FolderList" arguments="{folders: folder.subfolders, settings: settings, category: filter.category,keywords: filter.keywords}"/>
+                </f:if>
+                <f:if condition="{settings.displayFiles}" >
+                    <f:if condition="{folder.files}" >
+                        <ul>
+                            <f:for each="{folder.files}" as="file" >
+                                <li><f:link.typolink parameter="{file.publicUrl}" >{file.name}</f:link.typolink></li>
+                            </f:for>
+                        </ul>
+                    </f:if>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+</div>
+<h2>Contenu du Dossier "{folderName}"</h2>
+<f:if condition="{f:count(subject: documents)}" >
+	<ul class="d-sm-flex justify-content-start list-unstyled" role="group">
+		<f:render partial="OrderButtons" arguments="{label: 'Titre', field: 'name', filter: filter}"/>
+		<f:render partial="OrderButtons" arguments="{label: 'Type', field: 'extension', filter: filter}"/>
+		<f:render partial="OrderButtons" arguments="{label: 'Poids', field: 'size', filter: filter}"/>
+		<f:render partial="OrderButtons" arguments="{label: 'Date', field: 'tstamp', filter: filter}"/>
+    </ul>
+	<ul id="documents" class="list-group lazyLoadContainer">		
+	    <f:if condition="{settings.pagination}" >
+	        <f:then>
+				<v:paginate objects="{documents}" as="paginatedDocuments" configuration="{itemsPerPage: settings.itemsPerPage, maximumNumberOfLinks: 5, insertAbove: 0, insertBelow: 1}">
+		            <f:for each="{paginatedDocuments}" as="document" >
+						<f:render partial="DocumentItems" arguments="{_all}"/>
+		            </f:for>
+				</v:paginate>
+	        </f:then>
+	        <f:else>
+	            <f:for each="{documents}" as="document" >
+					<f:render partial="DocumentItems" arguments="{_all}"/>
+	            </f:for>
+	        </f:else>
+	    </f:if>
+    </ul>
+</f:if>

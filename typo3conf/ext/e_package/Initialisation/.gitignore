@@ -1,0 +1,10 @@
+ENABLE_INSTALL_TOOL
+*.log
+styles-*.css
+slick-*.css
+FaisToiPlaiz.php
+Redis.php
+.idea
+ext/e_magineurs/**/Css/css/
+ext/e_package/Resources/Public/Css/bootstrap*.css
+sites/

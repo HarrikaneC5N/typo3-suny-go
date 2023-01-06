@@ -1,0 +1,42 @@
+plugin.tx_dpnglossary {
+    view {
+        templateRootPaths {
+            2 = {$e_magineurs.conf.dossierExtensions}/{$e_magineurs.tx_dpnglossary.view.templateRootPath}
+        }
+
+        partialRootPaths {
+            2 = {$e_magineurs.conf.dossierExtensions}/{$e_magineurs.tx_dpnglossary.view.partialRootPath}
+        }
+
+        layoutRootPaths {
+            2 = {$e_magineurs.conf.dossierExtensions}/{$e_magineurs.tx_dpnglossary.view.layoutRootPath}
+        }
+
+        widget.Featdd\DpnGlossary\ViewHelpers\Widget\PaginateViewHelper.templateRootPaths.10 = {$e_magineurs.conf.dossierExtensions}/alphabet/
+        widget.Featdd\DpnGlossary\ViewHelpers\Widget\PaginateViewHelper.layoutRootPaths.10 = {$e_magineurs.conf.dossierExtensions}/alphabet/
+    }
+    persistence {
+        storagePid = {$e_magineurs.tx_dpnglossary.storagePid}
+    }
+    settings {
+        detailPage = {$e_magineurs.tx_dpnglossary.detailPage}
+        listPage = {$e_magineurs.tx_dpnglossary.listPage}
+        parsingPids = {$e_magineurs.tx_dpnglossary.parsingPids}
+        parsingExcludePidList = {$e_magineurs.tx_dpnglossary.parsingExcludePidList}
+        maxReplacementPerPage = {$e_magineurs.tx_dpnglossary.maxReplacementPerPage}
+        parsingTags = {$e_magineurs.tx_dpnglossary.parsingTags}
+        forbiddenParentTags = {$e_magineurs.tx_dpnglossary.forbiddenParentTags}
+        forbiddenParsingTagClasses = {$e_magineurs.tx_dpnglossary.forbiddenParsingTagClasses}
+        listmode = {$e_magineurs.tx_dpnglossary.listmode}
+
+        pagination {
+            characters = {$e_magineurs.tx_dpnglossary.pagination.characters}
+            insertAbove = {$e_magineurs.tx_dpnglossary.pagination.insertAbove}
+            insertBelow = {$e_magineurs.tx_dpnglossary.pagination.insertBelow}
+        }
+    }
+}
+
+[{$plugin.tx_dpnglossary.settings.addStylesheet} == 1]
+  page.includeCSS.dpnglossary >
+[global]

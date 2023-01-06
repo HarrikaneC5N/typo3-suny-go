@@ -1,0 +1,164 @@
+{namespace map=Emagineurs\EMaps\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+	<f:if condition="{settings.map}">
+		<f:then>		
+			<f:if condition="{settings.cat.liste}">
+				<f:if condition="{settings.cat.label}">
+					<f:then>
+						<h2>{settings.cat.label}</h2>
+					</f:then>
+					<f:else>
+						<h2>{f:translate(key: 'map.filter')}</h2>
+					</f:else>
+				</f:if>
+
+				<div id="eMapsCategories__{settings.map.mapUniqId}" >
+					<f:render partial="Map/Categories" arguments="{cats: cats, settings: settings}" />
+				</div>
+			</f:if>
+
+			<map:displayMap settings="{settings}" eMapsPois="{eMapsPois}" eMapsKmls="{eMapsKmls}" />
+
+			<f:if condition="{settings.map.recherche.actif}">
+				<f:then>
+					<div class="eMapsPanel">
+				</f:then>
+				<f:else>
+					<f:if condition="{settings.map.itineraire.actif}">
+						<div class="eMapsPanel">
+					</f:if>
+				</f:else>
+			</f:if>
+
+			<f:if condition="{settings.map.recherche.actif}">
+				<div class="recherche_maps">
+					<f:if condition="{settings.map.recherche.label}">
+						<f:then>
+							<h2>{settings.map.recherche.label}</h2>
+						</f:then>
+						<f:else>
+							<h2>{f:translate(key: 'map.recherche')}</h2>
+						</f:else>
+					</f:if>
+
+					<form id="eMapsRecherche__{settings.map.mapUniqId}" class="border border-primary p-3 mb-3" action="#">
+						<div class="form-row">
+							<div class="form-group col">
+								<label for="eMapsAdress__{settings.map.mapUniqId}">{f:translate(key: 'map.addresse')}</label>
+								<input id="eMapsAdress__{settings.map.mapUniqId}" type="text" class="form-control">
+							</div>
+						</div>
+						<input type="submit" value="{f:translate(key: 'map.search')}" class="btn btn-primary col">
+						<f:comment><input type="submit" value="{f:translate(key: 'map.reinit')}" onclick="eMapsSearchReset()"></f:comment>
+					</form>
+				</div>
+			</f:if>
+
+			<f:if condition="{settings.map.itineraire.actif}">
+				<div class="recherche_maps">
+					<f:if condition="{settings.map.itineraire.label}">
+						<f:then>
+							<h2>{settings.map.itineraire.label}</h2>
+						</f:then>
+						<f:else>
+							<h2>{f:translate(key: 'map.itineraire')}</h2>
+						</f:else>
+					</f:if>
+
+					<form id="eMapsItineraire__{settings.map.mapUniqId}" class="border border-primary p-3 mb-3" action="#">
+						<div class="form-row">
+							<div class="form-group col-md">
+								<label for="eMapsAdress1__{settings.map.mapUniqId}">{f:translate(key: 'map.depart')}</label>
+								<input id="eMapsAdress1__{settings.map.mapUniqId}" type="textbox" class="form-control">
+							</div>
+							<div class="form-group col-md">
+								<label for="eMapsAdress2__{settings.map.mapUniqId}">{f:translate(key: 'map.arrivee')}</label>
+								<input id="eMapsAdress2__{settings.map.mapUniqId}" type="textbox" class="form-control">
+							</div>
+							<f:if condition="{settings.map.itineraire.show}">
+								<div class="form-group col-md">
+									<label for="eMapsType__{settings.map.mapUniqId}">Moyen de transport</label>
+									<select id="eMapsType__{settings.map.mapUniqId}" class="custom-select">
+										<option value="DRIVING" <f:if condition="{settings.map.itineraire.type}=='DRIVING'">selected="selected"</f:if>>{f:translate(key: 'travel.DRIVING')}</option>
+										<option value="WALKING" <f:if condition="{settings.map.itineraire.type}=='WALKING'">selected="selected"</f:if>>{f:translate(key: 'travel.WALKING')}</option>
+										<option value="BICYCLING" <f:if condition="{settings.map.itineraire.type}=='BICYCLING'">selected="selected"</f:if>>{f:translate(key: 'travel.BICYCLING')}</option>
+										<option value="TRANSIT" <f:if condition="{settings.map.itineraire.type}=='TRANSIT'">selected="selected"</f:if>>{f:translate(key: 'travel.TRANSIT')}</option>
+									</select>
+								</div>
+							</f:if>
+						</div>
+						<input type="submit" value="{f:translate(key: 'map.search')}" class="btn btn-primary col">
+						<f:comment>
+							<input type="submit" value="{f:translate(key: 'map.reinit')}" onclick="eMapsItineraireReset()">
+						</f:comment>
+					</form>
+					<f:if condition="{settings.map.itineraire.panel}">
+						<div id="eMapsItinerairePanel__{settings.map.mapUniqId}" ></div>
+					</f:if>
+				</div>
+			</f:if>
+			
+			
+			<f:if condition="{settings.map.recherche.actif}">
+				<f:then>
+					</div>
+				</f:then>
+				<f:else>
+					<f:if condition="{settings.map.itineraire.actif}">
+						</div>
+					</f:if>
+				</f:else>
+			</f:if>
+
+			<f:if condition="{settings.poi.liste}">
+				<f:render partial="Map/Pois" arguments="{pois: pois, settings: settings}" />
+			</f:if>
+
+		</f:then>
+		<f:else>
+			<h1>No configuration found</h1>
+		</f:else>
+	</f:if>
+</f:section>
+
+<f:section name="wizard">
+	<f:if condition="{settings.map}">
+		<f:then>
+			<map:displayMap settings="{settings}" eMapsPois="{eMapsPois}" eMapsKmls="{eMapsKmls}" width="100%" height="100%" />
+
+			<div id="eMapsPanel" style="background-position: bottom center; position: fixed; bottom: 0px; width: 100%; padding: 0; margin: 0; background-color: white;" >
+				<form id="eMapsRecherche__{settings.map.mapUniqId}" action="#">
+					<input id="eMapsAdress__{settings.map.mapUniqId}" type="textbox" placeholder="Entrez votre adresse">
+					<input type="submit" value="Chercher!" >
+					<input id="eMapsSearchReset__{settings.map.mapUniqId}" type="button" value="Reset" >
+					<input id="eMapsSearchSave__{settings.map.mapUniqId}" type="button" value="Choisir" >
+				</form>
+			</div>
+		</f:then>
+		<f:else>
+			<h1>No configuration found</h1>
+		</f:else>
+	</f:if>
+
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+		}
+		.eMapsRecherche {
+			padding: 5px;
+		}
+		.eMapsPanel{
+			position: absolute;
+			top: 5px;
+			left: 50%;
+			margin-left: -180px;
+			z-index: 5;
+			background-color: #fff;
+			padding: 5px;
+			border: 1px solid #999;
+		}
+	</style>
+</f:section>

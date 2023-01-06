@@ -1,0 +1,57 @@
+<!-- Start template : Extensions/e_gestiondocs/Partials/DocumentItems.html -->
+<li class="list-group-item lazyLoadItem">
+	<f:link.typolink parameter="{document.publicUrl}" class="d-flex" target="_blank" title="{f:if(condition: '{document.properties.title}', then: document.properties.title, else: document.name)} (<f:format.bytes>{document.size}</f:format.bytes>) (nouvelle fenêtre)">
+		<div class="content">
+			<h2 class="card-title">
+				{f:if(condition: '{document.properties.title}', then: document.properties.title, else: document.name)}
+				<f:if condition="{v:isNewDocument(date: document.properties.creation_date, newPeriod: settings.newPeriod)}" >
+					<sup>Nouveau</sup>
+				</f:if>
+			</h2> 
+			<p>
+				<f:if condition="{document.properties.categories}">
+					<span class="cat">
+						<f:cObject typoscriptObjectPath='lib.categoriesDoc' data='{sourceUid: document.properties.uid}' />
+					</span>
+				</f:if>							
+				<f:if condition="{document.properties.description}">
+					<span class="description">
+						<f:format.crop maxCharacters="75" append="&nbsp;...">{document.properties.description}</f:format.crop>
+					</span>
+				</f:if>
+				<span class="type">
+					(<f:format.case>{document.extension}</f:format.case> - <f:format.bytes>{document.size}</f:format.bytes>)
+				</span>
+				<span class="date">Date : <f:format.date format="d.m.y">{document.properties.creation_date}</f:format.date></span>
+			</p>                    
+		</div>
+		<div class="img float-left mr-3 order-first">									
+			<f:if condition="{document.extension}==pdf">
+				<f:media file="{document}" width="75c" height="50c" alt="{document.alternative}" />
+			</f:if>
+			<f:if condition="{document.extension}==jpg || {document.extension}==png || {document.extension}==tif || {document.extension}==bmp || {document.extension}==gif || {document.extension}==jpeg">
+				<f:media file="{document}" width="75c" height="50c" alt="{document.alternative}" />
+			</f:if>
+			<f:if condition="{document.extension}==doc || {document.extension}==docx">
+				<f:image src="{settings.variables.dossierPublic.value}/Images/upload_doc.png" width="49" height="64" />
+			</f:if>
+			<f:if condition="{document.extension}==ppt || {document.extension}==pptx">
+				<f:image src="{settings.variables.dossierPublic.value}/Images/upload_ppt.png" width="49" height="64"/>
+			</f:if>
+			<f:if condition="{document.extension}==xls || {document.extension}==xlsx || {document.extension}==ods || {document.extension}==odp">
+				<f:image src="{settings.variables.dossierPublic.value}/Images/upload_xls.png" width="49" height="64"/>
+			</f:if> 
+			<f:if condition="{document.type}==4">
+				<f:if condition="{document.extension}==mp4">
+					<f:then>
+						<f:image src="{settings.variables.dossierPublic.value}/Images/upload_mp4.png" width="49" height="64"/>
+					</f:then>
+					<f:else>
+						<f:image src="{settings.variables.dossierPublic.value}/Images/upload_video.png" width="49" height="64"/>
+					</f:else>
+				</f:if>
+			</f:if>
+		</div>
+	</f:link.typolink>
+</li>
+<!-- End template : Extensions/e_gestiondocs/Partials/DocumentItems.html -->

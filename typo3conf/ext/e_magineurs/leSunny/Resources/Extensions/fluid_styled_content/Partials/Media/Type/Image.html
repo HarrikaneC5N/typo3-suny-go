@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:ce="http://typo3.org/ns/TYPO3/CMS/FluidStyledContent/ViewHelpers" data-namespace-typo3-fluid="true">
+<figure class="figure" role="group" aria-label="{file.description} {file.properties.copyright}">
+	<f:if condition="{file.link}">
+		<f:then>
+			<f:link.typolink parameter="{file.link}" title="{file.title}">
+				<f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+			</f:link.typolink>
+		</f:then>
+		<f:else>
+			<f:if condition="{data.image_zoom}">
+				<f:then>
+					<ce:link.clickEnlarge image="{file}" configuration="{settings.media.popup}">
+						<f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+					</ce:link.clickEnlarge>
+				</f:then>
+				<f:else>
+					<f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+				</f:else>
+			</f:if>
+		</f:else>
+	</f:if>
+	<f:if condition="{file.description} && {file.properties.copyright}">
+		<f:then>
+			<figcaption class="figure-caption">
+				<span class="small">{file.properties.copyright}</span> - <span>{file.description}</span>
+			</figcaption>
+		</f:then>
+		<f:else>
+			<f:if condition="{file.description}">
+				<figcaption class="figure-caption">
+					<span>{file.description}</span>
+				</figcaption>
+			</f:if>
+			<f:if condition="{file.properties.copyright}">
+				<figcaption class="figure-caption">
+					<span class="small">{file.properties.copyright}</span>
+				</figcaption>
+			</f:if>
+		</f:else>
+	</f:if>
+</figure>
+</html>

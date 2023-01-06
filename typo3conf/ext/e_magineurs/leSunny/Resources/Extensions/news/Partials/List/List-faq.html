@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:section name="list">
+     <!-- Start template : Extensions/news/Partials/List/List-faq.html / section : list-->
+    <div class="relative">
+        <div class="list list-news list-{settings.templateLayout} lazyLoadContainer row">
+            <f:if condition="{settings.hidePagination}">
+                <f:then>
+                    <f:for each="{news}" as="newsItem" iteration="iterator">                    
+                        <f:render section="card" arguments='{newsItem:newsItem}' />
+                    </f:for>
+                </f:then>
+                <f:else>
+                    <f:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
+                        <f:for each="{paginatedNews}" as="newsItem" iteration="iterator">                        
+                            <f:render section="card" arguments='{newsItem:newsItem}' />
+                        </f:for>
+                    </f:widget.paginate>
+                </f:else>
+            </f:if>
+        </div>
+        <f:if condition="{settings.templateLayout} == 5">
+            <button id="close-alerte" class="btn btn-secondary"></button>
+        </f:if>
+    </div>
+   <!-- End template : Extensions/news/Partials/List/List-faq.html / section : list-->
+</f:section>
+<f:section name="card">
+<!-- Start template : Extensions/news/Partials/List/List-faq.html / section : card-->
+    <div class="col-12 articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <article class="card card-news card-{settings.templateLayout} accordions">
+            <div class="card-header" data-open="false" id="heading-{newsItem.uid}">
+                <h2>
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-{newsItem.uid}" aria-expanded="false" aria-controls="collapse-{newsItem.uid}">
+                        {newsItem.title}
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-{newsItem.uid}" class="collapse" aria-labelledby="heading-{newsItem.uid}" data-parent=".list">
+                <div class="card-body">
+                    <f:render partial="Components/Categories" section="list" arguments="{_all}" />
+                    <f:format.raw>{newsItem.bodytext}</f:format.raw>
+                </div>
+            </div>
+        </article>
+    </div>
+    <!-- End template : Extensions/news/Partials/List/List-faq.html / section : card-->
+</f:section>
+
+</html>

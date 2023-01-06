@@ -1,0 +1,127 @@
+/* Fonctions à utiliser dans le thème */
+
+/* Typographgies en unitées relatives */
+$html-font-size: 16px;
+@function stripUnit($value) {
+    @return $value / ($value * 0 + 1);
+}
+@function em($pxValue) {
+    @return #{stripUnit($pxValue) / stripUnit($html-font-size)}em;
+}
+@function rem($pxValue) {
+    @return #{stripUnit($pxValue) / stripUnit($html-font-size)}rem;
+}
+
+/*@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}*/
+
+/*Medias queries*/
+/*1200px*/
+@mixin bp-min-large {
+    @media only screen and (min-width: $large-monitor-breakpoint ) {
+        @content;
+    }
+}
+/*992px*/
+@mixin bp-max-computer {
+    @media only screen and (max-width: $computer-breakpoint) {
+        @content;
+    }
+}
+@mixin bp-min-computer {
+    @media only screen and (min-width: $computer-breakpoint) {
+        @content;
+    }
+}
+/*768px*/
+@mixin bp-max-tablet {
+    @media only screen and (max-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+@mixin bp-min-tablet {
+    @media only screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+/*576px*/
+@mixin bp-min-mobile {
+    @media only screen and (min-width: $mobile-breakpoint ) {
+        @content;
+    }
+}
+// generic transform
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+ 
+// scale
+@mixin scale($scale) {
+    @include transform(scale($scale));
+} 
+// scale
+@mixin scalex($x, $y) {
+    @include transform(scale($x, $y));
+} 
+// translate
+@mixin translate ($x, $y) {
+    @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+    -moz-transform-origin: $origin;
+	     -o-transform-origin: $origin;
+	    -ms-transform-origin: $origin;
+	-webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};      
+}
+
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin spriteImg ($width, $height, $positionLeft, $positionTop){
+    width: $width *1px;
+    height: $height *1px;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../../Images/sprites.png) -$positionLeft *1px -$positionTop *1px;
+}

@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="General" />
+<f:section name="content">
+    <!--TYPO3SEARCH_end-->
+    <f:if condition="{news}">
+        <f:then>
+            <f:flashMessages />
+
+            <f:if condition="{settings.templateLayout} != ''">
+                <f:then>                
+                    <f:render partial="List/List-{settings.templateLayout}" section="list" arguments="{_all}" />
+                </f:then>
+                <f:else>                
+                    <f:render partial="List/List" section="list" arguments="{_all}" />
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <div class="no-news-found">
+                <f:translate key="list_nonewsfound" />
+            </div>
+        </f:else>
+    </f:if>
+    <!--TYPO3SEARCH_begin-->
+</f:section>
+
+</html>

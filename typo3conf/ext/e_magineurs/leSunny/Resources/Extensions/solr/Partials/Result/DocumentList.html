@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+
+<f:section name="Document">
+<!-- Start template : Extensions/solr/Partials/Results/DocumentList.html -->
+	<article class="search-result article {f:if(condition:document.isElevated, then: ' results-elevated')}"
+			data-document-score="{document.score}"
+			data-document-id="{document.id}"
+			data-document-url="{document.url}"
+		>
+		<f:if condition="{document.isElevated}">
+			<div class="results-elevated-label"><s:translate key="sponsored"/></div>
+		</f:if>
+
+		<a href="{s:uri.result.addSearchWordList(url:document.url, searchWords:resultSet.usedQuery.query)}" class="card card-solr">
+			<div class="card-header">
+				<h2>
+					{s:document.highlightResult(resultSet:resultSet, document:document, fieldName:'title')}
+					<f:if condition="{document.extension_textS}">
+						<span class="no_glossary small">({document.extension_textS} - <f:format.bytes>{document.size_textS}</f:format.bytes>)</span>
+					</f:if>
+				</h2>
+			</div>
+			<div class="card-body">
+				<f:render partial="Partials/Components/Image" arguments="{_all}" />				
+				<div class="content col">
+					<f:render partial="Partials/Components/Categories" arguments="{_all}" />
+					<f:render partial="Partials/Components/Date" arguments="{_all}" />
+					<f:render partial="Partials/Components/Teaser" arguments="{_all}" />
+
+					<f:if condition="{document.cell_textS} || {document.phone_textS} || {document.mail_textS}">
+						<ul class="list-group list-group-flush">
+							<f:if condition="{document.cell_textS}">
+							    <li class="list-group-item no_glossary">{document.cell_textS}</li>  
+							</f:if>
+							<f:if condition="{document.phone_textS}">
+							    <li class="list-group-item no_glossary">{document.phone_textS}</li>  
+							</f:if>
+							<f:if condition="{document.mail_textS}">
+							    <li class="list-group-item no_glossary">{document.mail_textS}</li>  
+							</f:if>
+						</ul>
+					</f:if>
+					<f:if condition="{document.nomlieu_textS} || {document.adresse_textS} || {document.ville_textM}">
+						<ul class="list-group list-group-flush">
+							<f:if condition="{document.nomlieu_textS}">
+								<li class="list-group-item no_glossary">{document.nomlieu_textS}</li>
+							</f:if>
+							<f:if condition="{document.adresse_textS}">
+								<li class="list-group-item no_glossary"><f:format.stripTags>{document.adresse_textS}</f:format.stripTags></li>
+							</f:if>
+							<f:if condition="{document.ville_textM}">
+								<li class="list-group-item no_glossary">{document.codePostal_textM.0} {document.ville_textM.0}</li>
+							</f:if>
+						</ul>
+					</f:if>
+					<f:if condition="{document.poiName_stringM} || {document.poiAdress_stringM} || {document.poiCity_stringM}">
+						<ul class="list-group list-group-flush">
+							<f:if condition="{document.poiName_stringM}">
+								<li class="list-group-item no_glossary">{document.poiName_stringM.0}</li>
+							</f:if>
+							<f:if condition="{document.poiAdress_stringM}">
+								<li class="list-group-item no_glossary">{document.poiAdress_stringM.0}</li>
+							</f:if>
+							<f:if condition="{document.poiCity_stringM}">
+								<li class="list-group-item no_glossary">{document.poiZip_stringM.0} {document.poiCity_stringM.0}</li>
+							</f:if>
+						</ul>
+					</f:if>
+				</div>
+			</div>
+			<div class="card-footer">
+				<f:if condition="{document.type_stringS}">
+					<p class="mb-0">{document.type_stringS}</p>
+				</f:if>			
+				<f:render partial="Result/RelevanceBar" section="RelevanceBar" arguments="{resultSet:resultSet, document:document}" />
+			</div>
+		</a>
+		<f:if condition="{0:document.type} == {0:'tx_solr_file'}">
+			<div class="card-footer references">
+				<f:if condition="{document.fileReferenceUrl}">						
+					<p class="small mb-0">
+						<f:link.typolink parameter="{document.fileReferenceUrl}" title="Ouverture dans un nouvel onglet">
+							Cité dans : <f:format.crop maxCharacters="45" append="&nbsp;...">{document.fileReferenceTitle}</f:format.crop>
+						</f:link.typolink>
+					</p>
+				</f:if>
+			</div>
+		</f:if>
+	</article>
+
+</f:section>

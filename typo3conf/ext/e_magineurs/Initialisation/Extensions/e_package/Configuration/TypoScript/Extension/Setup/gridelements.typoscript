@@ -1,0 +1,61 @@
+tt_content.gridelements_pi1 =< lib.contentElement
+tt_content.gridelements_pi1 {
+    templateName >
+    templateName.override.field >
+    templateName.cObject = CASE
+    templateName.cObject {
+        key.field = tx_gridelements_backend_layout
+        default = TEXT
+        default.value = GridElement
+        col-md-6 = TEXT
+        col-md-6.value = GridEmagineurs
+        col-md-3_col-md-9 < .col-md-6
+        col-md-9_col-md-3 < .col-md-6
+        col-md-4_col-md-8 < .col-md-6
+        col-md-8_col-md-4 < .col-md-6
+        col-md-4 < .col-md-6
+        col-lg-12 < .col-md-6
+    }
+    templateRootPaths {
+        1 = EXT:gridelements/Resources/Private/Templates/
+        2 = {$e_magineurs.conf.dossierExtensions}/gridelements/Templates/
+    }
+
+    partialRootPaths {
+        1 = EXT:gridelements/Resources/Private/Partials/
+        2 = {$e_magineurs.conf.dossierExtensions}/gridelements/Partials/
+    }
+
+    dataProcessing {
+        10 = GridElementsTeam\Gridelements\DataProcessing\GridChildrenProcessor
+        10 {
+            default {
+                as = children
+                # Default options of the grid children processor
+                # Change them according to the needs of your layout
+                # Read more about it in the TypoScript section of the manual
+                options {
+                    resolveFlexFormData = 1
+                    resolveChildFlexFormData = 0
+                #    sortingDirection = ASC
+                #    sortingField = sorting
+                #    recursive = 0
+                #    resolveBackendLayout = 1
+                #    respectColumns = 1
+                #    respectRows = 1
+                }
+            }
+        }
+    }
+}
+
+lib.replaceColClass = TEXT
+lib.replaceColClass {
+  field = sourceUid
+  stdWrap.replacement {
+    10 {
+        search = I
+        replace.char = 32
+    }
+  }
+}

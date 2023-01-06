@@ -1,0 +1,52 @@
+page = PAGE
+page {
+    10 {
+        templateName = TEXT
+		templateName.stdWrap.cObject = CASE
+		templateName.stdWrap.cObject {
+			key.data = pagelayout
+			default = TEXT
+			default.value = Default
+			1 = TEXT
+			1.value = Default
+			2 = TEXT
+			2.value = Accueil
+			0 < .default
+		}
+        variables {
+        	# Ajoutez vos variables ici
+        	# variables existantes dans le package : 
+        	# dossierPublic = {$e_magineurs.conf.dossierPublic}
+			# homePage = {$e_magineurs.conf.homePage}
+			# dossierLangue = LLL:{$e_package.conf.dossierLangue}/locallang.xlf
+        }
+    }
+}
+
+# active la popup sur les images du RTE
+lib.contentElement.settings.media.popup.enable = 1
+lib.contentElement.settings.media.popup.directImageLink = 1
+
+#Envoi par email
+lib.emailPage = TEXT
+lib.emailPage {
+	value =  Envoyer par email
+	wrap = <div class="itemMail"><a href="javascript:emailCurrentPage()">|</a></div>
+}
+
+lib.parseFunc_RTE.externalBlocks.table.stdWrap.HTMLparser.tags.table.fixAttrib.class.list := addToList(contenttable, table, table-responsive)
+
+/*
+#Exemple de récupération d'une image des propriétés d'une page. L'objet lib.imagePage est créé dans le package
+lib.monObjetTS < lib.imagePage
+lib.monObjetTS.renderObj.file {
+	width = 260c
+	height = 136c
+}
+*/
+
+/*
+#Exemple de récupération d'un contenu d'une page précise
+lib.monObjetTS < styles.content.get
+lib.monObjetTS.select.pidInList = 88
+*/

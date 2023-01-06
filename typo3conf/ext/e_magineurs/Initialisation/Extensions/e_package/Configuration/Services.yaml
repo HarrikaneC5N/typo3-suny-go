@@ -1,0 +1,7 @@
+services:
+  Emagineurs\EPackage\Events\InstallService:
+    tags:
+      - name: event.listener
+        identifier: 'e_package/generateDefaultFiles'
+        event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
+        after: 'legacy-slot'

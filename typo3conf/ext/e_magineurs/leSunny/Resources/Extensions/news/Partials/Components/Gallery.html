@@ -1,0 +1,20 @@
+<f:if condition="{newsItem.falMedia -> f:count()}>1">
+    <div class="gallery">
+        <f:for each="{newsItem.falMediaPreviews}" as="falMediaPreviews" key="key" iteration="ite">
+            <f:if condition="{ite.isFirst}">
+                <f:then>
+                </f:then>
+                <f:else>
+                    <f:if condition="{falMediaPreviews.originalResource.type} == 3 || {falMediaPreviews.originalResource.type} == 4">
+                        <f:render partial="Detail/FalMediaVideo" arguments="{falMediaPreviews: falMediaPreviews}" />
+                    </f:if>
+                    <f:if condition="{falMediaPreviews.originalResource.type} == 5 || {falMediaPreviews.originalResource.type} == 2">
+                        <a href="{f:uri.image(image:falMediaPreviews, width:'{settings.detail.media.image.lightbox.width}', height:'{settings.detail.media.image.lightbox.height}')}" class="{settings.detail.media.image.lightbox.class} img-thumbnail" data-fancybox="galerie">
+                            <f:image image="{falMediaPreviews}" alt="{f:if(condition: '{falMediaPreviews.originalResource.alternative}', then: '{falMediaPreviews.originalResource.alternative}', else:'{falMediaPreviews.originalResource.name}')}" class="img-fluid" />
+                        </a>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </f:for>
+    </div>
+</f:if>

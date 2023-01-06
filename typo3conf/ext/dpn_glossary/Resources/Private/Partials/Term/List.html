@@ -1,0 +1,21 @@
+<html data-namespace-typo3-fluid="true" lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+
+  <dl>
+    <f:for each="{terms}" as="term">
+      <dt>
+        <f:if condition="{term.termMode} == 'link'">
+          <f:then>
+            <f:link.typolink parameter="{term.termLink}">{term.name}</f:link.typolink>
+          </f:then>
+          <f:else>
+            <f:link.action action="show" arguments="{term: term}">{term.name}</f:link.action>
+          </f:else>
+        </f:if>
+      </dt>
+      <dd>{term.tooltiptext}</dd>
+    </f:for>
+  </dl>
+
+</html>

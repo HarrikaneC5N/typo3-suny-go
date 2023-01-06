@@ -1,0 +1,343 @@
+RTE.default.buttons.image.options.magic.maxWidth = 1020
+RTE.default.buttons.image.options.magic.maxHeight = 800
+RTE.default.buttons.image.options.plain.maxWidth = 1020
+RTE.default.buttons.image.options.plain.maxHeight = 800
+RTE.buttons.image < .RTE.default.buttons.image
+
+TCEFORM {
+    tt_content{
+        layout {
+            removeItems = 1,2,3
+        }
+        CType.removeItems = bullets,table,form_formframework,text,textpic,image,menu_related_pages,menu_recently_updated,menu_categorized_content,menu_categorized_pages,menu_sitemap_pages
+        header_layout.removeItems = 1
+
+        pi_flexform.egmap_gmap {
+            avance {
+                settings\.map\.deplacement\.actif.disabled = 1
+                settings\.map\.deplacement\.position.disabled = 1
+            }
+        }
+    }
+    pages{
+        layout {
+            removeItems = 1,2,3
+            addItems.4 = Titre caché
+        }
+    }
+    # Désactiver des types de champs
+    tx_powermail_domain_model_field.type.removeItems = captcha,location,typoscript
+    tx_powermail_domain_model_form {
+        css {
+            removeItems = layout1, layout2, layout3
+            addItems {
+                col-md-6 = 50%
+                col-md-4 = 33%
+                col-md-8 = 66%
+                col-md-8 = 66%
+            }
+        }
+    }
+    tx_powermail_domain_model_page < .tx_powermail_domain_model_form
+    tx_powermail_domain_model_field < .tx_powermail_domain_model_form
+
+    tx_news_domain_model_news {
+        author_email.label = E-mail de l'auteur
+        type.label = Type d'actualité
+        archive.label = Date d'archivage
+        bodytext.label = Texte
+        related_fsmediaalbums.label = Albums liés
+        adressetout.label = Adresse complète
+        ville.label = Commune
+    }
+
+	sys_file_collection {
+		description.disabled = 1
+	}
+}
+
+TCEMAIN {
+    table{
+        pages.disablePrependAtCopy = 1
+        tt_content.disablePrependAtCopy = 1
+        tx_news_domain_model_news.disablePrependAtCopy = 1
+    }
+    permissions {
+        user = show,edit,delete,new,editcontent
+        group = show,edit,delete,new,editcontent
+        everybody = show,edit,delete,new,editcontent
+    }
+    linkHandler {
+        tx_news {
+            handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+            label = LLL:EXT:e_package/Resources/Private/Language/locallang.xlf:linkHandlerActualite
+            configuration.table = tx_news_domain_model_news
+            scanBefore = page
+        }
+        tx_news-agenda < .tx_news
+        tx_news-agenda {
+            label = LLL:EXT:e_package/Resources/Private/Language/locallang.xlf:linkHandlerAgenda
+        }
+        tx_eannuaires < .tx_news
+        tx_eannuaires {
+            label = LLL:EXT:e_package/Resources/Private/Language/locallang.xlf:linkHandlerDirectory
+            configuration.table = tx_eannuaires_domain_model_fiche
+        }
+        tx_fsmediagallery < .tx_news
+        tx_fsmediagallery {
+            label = LLL:EXT:e_package/Resources/Private/Language/locallang.xlf:linkHandlerPhotoGallery
+            configuration {
+                table = sys_file_collection
+                pageTreeMountPoints >
+                hidePageTree = 1
+            }
+        }
+        tx_eannuairesVids < .tx_eannuaires
+        tx_eannuairesVids {
+            label = LLL:EXT:e_package/Resources/Private/Language/locallang.xlf:linkHandlerVideosGallery
+            configuration {
+                pageTreeMountPoints >
+                hidePageTree = 1
+            }
+        }
+        folder >
+        url.displayAfter = file
+    }
+    preview {
+        tx_news_domain_model_news {
+            previewPageId = 26
+            useCacheHash = 1
+            useDefaultLanguageRecord = 0
+            fieldToParameterMap {
+                uid = tx_news_pi1[news_preview]
+            }
+            additionalGetParameters {
+                tx_news_pi1.controller = News
+                tx_news_pi1.action = detail
+            }
+        }
+    }
+}
+
+# ACTUS
+[3 in tree.rootLineIds]
+    TCEFORM.tx_news_domain_model_news {
+        datetime.label = Date de l'actualite
+    }
+[global]
+
+# AGENDA
+[4 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news {
+        previewPageId = 28
+    }
+    TCEFORM.tx_news_domain_model_news {
+        is_event.disabled = 1
+    }
+[global]
+
+# EGMAP
+TCEFORM.tx_egmap_domain_model_kml {
+    picto.disabled = 1
+    note.disabled = 1
+}
+
+TCEFORM.tx_egmap_domain_model_poi {
+    title.disabled = 1
+    society.disabled = 1
+    website.disabled = 1
+    fax.disabled = 1
+    file.disabled = 1
+    html.disabled = 1
+    note.label = Description
+}
+
+TCAdefaults.sys_file_reference.showinpreview = 1
+
+# Pour ajouter plusieurs class aux colonnes, utiliser cette notation col-lg-4Icol-md-6_col-lg-8Icol-md-6  où I délimite les class d'une même colonne
+
+tx_gridelements.setup {
+    col-md-6 {
+        title = Deux colonnes 50%-50%
+        config {
+            colCount = 2
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Contenus
+                            colPos = 0
+                        }
+                        2 {
+                            name = Contenus
+                            colPos = 1
+                        }
+                    }
+                }
+            }
+        }
+        icon = EXT:e_package/Initialisation/grid5050.gif
+    }
+    col-md-3_col-md-9 {
+        title = Deux colonnes 25%-75%
+        config {
+            colCount = 3
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Contenus
+                            colPos = 0
+                            colspan = 2
+                        }
+                        2 {
+                            name = Contenus
+                            colPos = 1
+                            colspan = 2
+                        }
+                    }
+                }
+            }
+        }
+        icon = EXT:e_package/Initialisation/grid2575.gif
+    }
+    col-md-9_col-md-3 {
+        title = Deux colonnes 75%-25%
+        config {
+            colCount = 3
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Contenus
+                            colPos = 0
+                            colspan = 2
+                        }
+                        2 {
+                            name = Contenus
+                            colPos = 1
+                            colspan = 1
+                        }
+                    }
+                }
+            }
+        }
+        icon = EXT:e_package/Initialisation/grid7525.gif
+    }
+    col-md-4_col-md-8 {
+        title = Deux colonnes 33%-66%
+        config {
+            rowCount = 1
+            colCount = 3
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Contenus
+                            colPos = 0
+                            colspan = 1
+                        }
+                        2 {
+                            name = Contenus
+                            colPos = 1
+                            colspan = 2
+                        }
+                    }
+                }
+            }
+        }
+        icon = EXT:e_package/Initialisation/grid3366.gif
+    }
+    col-md-8_col-md-4 {
+        title = Deux colonnes 66%-33%
+        config {
+            colCount = 3
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Contenus
+                            colPos = 0
+                            colspan = 2
+                        }
+                        2 {
+                            name = Contenus
+                            colPos = 1
+                            colspan = 1
+                        }
+                    }
+                }
+            }
+        }
+        icon = EXT:e_package/Initialisation/grid6633.gif
+    }
+    col-md-4 {
+        title = Trois colonnes 33%-33%-33%
+        config {
+            colCount = 3
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Contenus
+                            colPos = 0
+                        }
+                        2 {
+                            name = Contenus
+                            colPos = 1
+                        }
+                        3 {
+                            name = Contenus
+                            colPos = 2
+                        }
+                    }
+                }
+            }
+        }
+        icon = EXT:e_package/Initialisation/grid333333.gif
+    }
+    col-lg-12 {
+        title = Une colonne 100%
+        config {
+            colCount = 1
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Contenus
+                            colPos = 0
+                        }
+                    }
+                }
+            }
+        }
+        icon = EXT:e_package/Initialisation/grid100.gif
+    }
+}
+
+#################
+## AJOUT D'UN NOUVEAU MENU ##
+#################
+mod.wizards.newContentElement.wizardItems.menu {
+    elements {
+        menu_piedpage {
+            iconIdentifier = e_magineurs_icon
+            title = Menu pied de page
+            description = Menu utilisé dans le pied de page du site
+            tt_content_defValues.CType = menu_piedpage
+        }
+        menu_principal {
+            iconIdentifier = e_magineurs_icon
+            title = Menu principal
+            description = Menu principal du site
+            tt_content_defValues.CType = menu_principal
+        }
+    }
+    show := addToList(menu_piedpage,menu_principal)
+}

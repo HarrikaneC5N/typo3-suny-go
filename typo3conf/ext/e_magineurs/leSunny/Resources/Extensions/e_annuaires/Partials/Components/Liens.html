@@ -1,0 +1,12 @@
+<f:if condition="{fiche.liens}">
+    <div class="liens list-group-item">
+        <h2 class="lead">Liens</h2>
+        <ul class="detail">
+            <f:for each="{fiche.liens}" as="lien">
+                <li>
+                    <f:link.external uri="{lien.url}" title="{lien.titre} (nouvelle fenêtre)" target="_blank">{lien.titre}</f:link.external>
+                </li>
+            </f:for>
+        </ul>
+    </div>
+</f:if>

@@ -1,0 +1,94 @@
+<f:comment>Possible de mettre deux structures: 
+	soit data/content -> pour une infobulle simple
+	soit data/tab/content -> chaque tab sera un tab dans l'infobulle
+	
+</f:comment>
+<data>
+	<key>{key}</key>
+	<content>
+		<f:format.cdata>
+			<div class="infobulle_carto">
+				<f:if condition="{infos.falMediaPreviews.0}">
+					<f:image src="{infos.falMediaPreviews.0.originalResource.publicUrl}" width="280c" height="160c" treatIdAsReference="1" />
+				</f:if>
+				<h2 class="lead">
+					<f:if condition="{infos.uid} == '3'">
+						<f:then>
+							<f:link.page pageUid="26" additionalParams="{tx_news_pi1: '{news: infos}'}">{infos.title}</f:link.page>
+						</f:then>
+						<f:else>
+							<f:link.page pageUid="28" additionalParams="{tx_news_pi1: '{news: infos}'}">{infos.title}</f:link.page>
+						</f:else>
+					</f:if>
+				</h2>
+				<f:if condition="{infos.poi}">
+					<f:then>
+						<p class="itineraire">
+							<a href="https://www.google.fr/maps/dir//{infos.poi.0.lat},{infos.poi.0.lng}" title="M'y rendre (nouvelle fenêtre)" target="_blank" class="btn btn-primary">M'y rendre</a>
+						</p>
+					</f:then>
+					<f:else>
+						<p class="itineraire">
+							<a href="https://www.google.fr/maps/dir//{infos.lat},{infos.lng}" title="M'y rendre (nouvelle fenêtre)" target="_blank" class="btn btn-primary">M'y rendre</a>
+						</p>
+					</f:else>
+				</f:if>
+
+				<f:if condition="{infos.begindate} != ''">
+					<f:then>
+						<f:if condition="{infos.finishdate} != ''">
+							<f:then>
+								<f:if condition="<f:format.date format='U'>{infos.begindate}</f:format.date> == <f:format.date format='U'>{infos.finishdate}</f:format.date>">
+									<f:then>
+										<p class="icone date">Le <f:format.date format="%A %d %B %Y">{infos.begindate}</f:format.date></p>
+									</f:then>
+									<f:else>
+										<p class="icone date">Du <f:format.date format="%A %d %B %Y">{infos.begindate}</f:format.date> au <f:format.date format="%A %d %B %Y">{infos.finishdate}</f:format.date></p>
+									</f:else>
+								</f:if>
+							</f:then>
+							<f:else>
+								<p class="icone date">À partir du <f:format.date format="%A %d %B %Y">{infos.begindate}</f:format.date></p>
+							</f:else>
+						</f:if>
+					</f:then>
+					<f:else>
+						<f:if condition="{infos.finishdate} != ''">
+							<p class="icone date">Jusqu'au <f:format.date format="%A %d %B %Y">{infos.finishdate}</f:format.date></p>
+						</f:if>
+					</f:else>
+				</f:if>
+
+
+				<f:if condition="{infos.poi}">
+					<p class="icone adresse">
+						<f:if condition="{infos.poi.0.name}">
+							<span>{infos.poi.0.name}, </span>
+						</f:if>
+						<f:if condition="{infos.poi.0.address}">
+							<span>{infos.poi.0.address}</span>
+						</f:if>
+						<f:if condition="{infos.poi.0.zip} {infos.poi.0.city}">
+							<span>, {infos.poi.0.zip} {infos.poi.0.city}</span>
+						</f:if>
+					</p>
+				</f:if>
+
+				<f:if condition="{infos.placename} || {infos.placeadress} || {infos.town}" >
+					<p class="icone adresse">
+						<f:if condition="{infos.placename}" >
+							<span>{infos.placename}</span>, 
+						</f:if>
+						<f:if condition="{infos.placeadress}" >
+							<span><f:format.stripTags>{infos.placeadress}</f:format.stripTags></span>
+						</f:if>
+						<f:if condition="{infos.town}" >
+							, <span>{infos.town}</span>
+						</f:if>
+					</p>
+				</f:if>	
+
+			</div>
+		</f:format.cdata>
+	</content>
+</data>

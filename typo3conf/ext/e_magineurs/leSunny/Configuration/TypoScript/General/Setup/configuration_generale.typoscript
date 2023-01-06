@@ -1,0 +1,104 @@
+page.includeCSS {
+	bootstrap = {$e_magineurs.conf.dossierPackagePublic}/Css/Bootstrap/bootstrap.scss
+	bootstrap.outputdir = {$e_magineurs.conf.dossierPackagePublic}/Css
+	slickStyle = {$e_magineurs.conf.dossierPublic}/Css/modules/slick.css
+	picker = {$e_magineurs.conf.dossierPublic}/Css/modules/picker.css
+	datepicker = {$e_magineurs.conf.dossierPublic}/Css/modules/picker.date.css
+	emagineursStyles = {$e_magineurs.conf.dossierPublic}/Css/page.scss
+	emagineursStyles.outputdir = {$e_magineurs.conf.dossierPublic}/Css/css/
+}
+[getTSFE() && getTSFE().id == {$e_magineurs.conf.homePage}]
+	page.includeCSS.emagineursStyles = {$e_magineurs.conf.dossierPublic}/Css/home.scss
+[global]
+
+page.includeJSFooter {
+	lazysizes = {$e_magineurs.conf.dossierPublic}/JavaScript/lazysizes.min.js
+	slickScripts = {$e_magineurs.conf.dossierPublic}/JavaScript/slick-aria.js
+	picker = {$e_magineurs.conf.dossierPublic}/JavaScript/pickadate/picker.js
+	datepicker = {$e_magineurs.conf.dossierPublic}/JavaScript/pickadate/picker.date.js
+	scripts = {$e_magineurs.conf.dossierPublic}/JavaScript/scripts.js
+	accessibilite = {$e_magineurs.conf.dossierPublic}/accessibilite/accessibilite.js
+	# Exemple chargement external
+	#file2 = //api.tiles.mapbox.com/mapbox.js/v1.4.0/mapbox.js
+	#file2.external = 1
+}
+
+page.headerData.50 = TEXT
+page.headerData.50 {
+	value (
+		<script type="text/javascript" src="{$e_magineurs.conf.dossierPublic}/tarteaucitron/tarteaucitron.js"></script>
+		<script type="text/javascript">
+			var currentLanguage = document.documentElement.lang;
+			window.tarteaucitronForceLanguage = currentLanguage;
+			tarteaucitron.init({
+				"privacyUrl": "", /* Privacy policy url */
+				"hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+				"cookieName": "tarteaucitron", /* Cookie name */
+				"orientation": "bottom", /* Banner position (top - bottom) */
+				"groupServices": false, /* Group services by category */
+				"showAlertSmall": false, /* Show the small banner on bottom right */
+				"cookieslist": true, /* Show the cookie list */
+				"closePopup": false, /* Show a close X on the banner */
+				"showIcon": true, /* Show cookie icon to manage cookies */
+				"iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
+				"adblocker": false, /* Show a Warning if an adblocker is detected */
+				"DenyAllCta" : true, /* Show the deny all button */
+				"AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+				"highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
+				"handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+				"removeCredit": false, /* Remove credit link */
+				"moreInfoLink": false, /* Show more info link */
+				"useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+				"useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
+				"readmoreLink": "", /* Change the default readmore link */
+				"mandatory": true, /* Show a message about mandatory cookies */
+			});
+
+		</script>
+	)
+}
+
+page.jsFooterInline.919 >
+
+page.jsFooterInline.919 = FLUIDTEMPLATE
+page.jsFooterInline.919 {
+    file = {$e_package.conf.dossierTemplate}/Tarte.js
+    variables {
+        UA = TEXT
+        UA.value = {$e_magineurs.tracking.UA}
+		GA = TEXT
+        GA.value = {$e_magineurs.tracking.GA}
+		GTM = TEXT
+        GTM.value = {$e_magineurs.tracking.GTM}
+        matomo-id = TEXT
+        matomo-id.value = {$e_magineurs.tracking.matomo-id}
+
+    }
+}
+
+
+page.10.variables.accessibilityDyslexia = TEXT
+page.10.variables.accessibilityDyslexia.value = 0
+
+[request.getCookieParams()['accessibility-dyslexia'] == 1]
+	page.10.variables.accessibilityDyslexia.value = 1
+	page.includeCSS.dyslexieStyles = {$e_magineurs.conf.dossierPublic}/accessibilite/dyslexia.css
+[end]
+
+
+page.10.variables.accessibilityContraste = TEXT
+page.10.variables.accessibilityContraste.value = 0
+
+[request.getCookieParams()['accessibility-contraste'] == 1]
+	page.10.variables.accessibilityContraste.value = 1
+	page.includeCSS.contrasteStyles = {$e_magineurs.conf.dossierPublic}/accessibilite/contraste.css
+[end]
+
+
+page.10.variables.accessibilityLineheight = TEXT
+page.10.variables.accessibilityLineheight.value = 0
+
+[request.getCookieParams()['accessibility-lineheight'] == 1]
+	page.10.variables.accessibilityLineheight.value = 1
+	page.includeCSS.lineheightStyles = {$e_magineurs.conf.dossierPublic}/accessibilite/lineheight.css
+[end]

@@ -1,0 +1,57 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:if condition="{data.toggle_appearance}">
+	<f:then>
+		<f:if condition="{data.header}">
+			<f:else>
+				<div class="alert alert-warning" role="alert">Merci d'ajouter un titre pour pouvoir plier/déplier le contenu.</div>
+			</f:else>
+		</f:if>
+		<f:if condition="{data.header_layout}==100">
+			<div class="alert alert-warning" role="alert">Le titre est de type "caché". Choisissez un autre type de titre pour pouvoir plier/déplier le contenu.</div>
+		</f:if>
+	</f:then>
+	<f:else>
+		<f:if condition="{data.toggle_position}">
+			<div class="alert alert-warning" role="alert">Vous avez coché la case "Contenu déplié (plié par defaut)". Merci de cocher la case "Contenu plié / déplié" pour que ça fonctionne </div>
+		</f:if>
+	</f:else>
+</f:if>
+<f:if condition="{data.header_layout} != 100">
+	<f:if condition="{data.header} || {data.subheader} || {data.date}">
+		<f:if condition="{data.toggle_appearance} == 1 || {data.toggle_appearance} == 2">
+			<f:then>
+				<f:if condition="{data.toggle_appearance} == 1">
+					<f:then>
+						<div class="card-header" data-open="false" id="heading-{data.uid}">
+					</f:then>
+					<f:else>						
+						<div class="card-header" data-open="true" id="heading-{data.uid}">
+					</f:else>
+				</f:if>
+			</f:then>
+			<f:else>
+				<div class="content-header">
+			</f:else>
+		</f:if>		
+			<f:render partial="Header/Header" arguments="{
+				uid: data.uid,
+				header: data.header,
+				layout: data.header_layout,
+				positionClass: '{f:if(condition: data.header_position, then: \'ce-headline-{data.header_position}\')}',
+				link: data.header_link,
+				default: settings.defaultHeaderType,
+				toggleAppearance: data.toggle_appearance}" />
+			<f:render partial="Header/SubHeader" arguments="{
+				uid: data.uid,
+				subheader: data.subheader,
+				layout: data.header_layout,
+				positionClass: '{f:if(condition: data.header_position, then: \'ce-headline-{data.header_position}\')}',
+				default: settings.defaultHeaderType}" />
+			<f:render partial="Header/Date" arguments="{
+				uid: data.uid,
+				date: data.date,
+				positionClass: '{f:if(condition: data.header_position, then: \'ce-headline-{data.header_position}\')}'}" />
+		</div>
+	</f:if>
+</f:if>
+</html>

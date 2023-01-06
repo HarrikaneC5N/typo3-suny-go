@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+	<f:render section="Menu" arguments="{menu: menu}" />
+</f:section>
+<f:section name="Menu">
+	<f:if condition="{menu}">
+		<ul id="sitemap">
+			<f:for each="{menu}" as="page">						
+				<li>
+					<a href="{page.link}">
+						{page.title}
+					</a >
+					<f:if condition="{page.children}">
+						<ul id="sitemap-{page.data.uid}">
+							<f:render section="SubMenu" arguments="{menu: page.children}" />
+						</ul>
+					</f:if>
+				</li>
+			</f:for>
+		</ul>
+	</f:if>
+</f:section>
+
+<f:section name="SubMenu">
+	<f:if condition="{menu}">
+		<f:for each="{menu}" as="page">		
+			<li>
+				<a href="{page.link}">
+					{page.title}
+				</a>
+				<f:if condition="{page.children}">
+					<ul id="sitemap-{page.data.uid}">
+						<f:render section="SubMenu" arguments="{menu: page.children}" />
+					</ul>
+				</f:if>
+			</li>
+		</f:for>
+	</f:if>
+
+</f:section>
+</html>

@@ -1,0 +1,93 @@
+h1, .h1,
+h3, .h3 {
+	color: #02709F;
+}
+
+.ce-bodytext a,
+a.link-internal {
+	color: #02709F;
+}
+
+#header svg {
+	fill: #02709F;
+}
+#header #header-profil {
+    border: 2px solid #02709F;	
+}
+#header header[role="banner"] span {
+	color: #5E6D21;
+}
+
+.breadcrumb-item a {
+	color: #6A6A6A;
+}
+
+
+blockquote,
+.frame-type-uploads .list-group-item {
+    border-left: 3px solid #02709F;
+}
+
+.item.item-agenda .wrap-agenda .more {
+	background : #02709F ;
+}
+
+
+label, .label,
+.frame-type-felogin_login .forgot a,
+[type="reset"] {
+	color: #5E6D21;
+}
+
+.list .date {
+	color: #5E6D21;
+}
+
+.form-control, .form-control:focus , 
+.custom-select, .custom-select:focus, 
+.custom-file-label,
+.frame-type-felogin_login .custom-control-label,
+form .form-group .radio label, form .form-group .checkbox label,
+form.extension select,
+.modal-body .content-info p,
+form.search label,
+#bibliotheque #folder .level-0 a .total {
+	color: #000;
+}
+
+html:lang(fr) .custom-file-label::after {
+	background: #02709F;
+}
+
+
+#powermail_tabmenu .btn .circle {
+	background: #61666A;
+}
+#powermail_tabmenu .btn.active {
+	background: #02709F;
+}
+#powermail_tabmenu .btn.active .circle {
+	color: #02709F;
+}
+
+.gallery .description .title {
+	background: #2c3e50;
+}
+.gallery:hover .description, .gallery:focus .description {
+	background: #2c3e50;
+}
+
+.list .categories, 
+.list-nav-news li a,
+.list.list-actusRelated .wrap-data .date,
+.item.item-agendanext .wrap-agenda p, .item.item-agenda .wrap-agenda p {
+	color: #000;
+}
+.btn-tooltip,
+.list-nav-news li.active a:after {
+	background: #000;
+}
+
+.frame-layout-10 .entete a,.frame-layout-10 .entete a:hover, .frame-layout-10 .entete a:focus {
+	background: rgb(0 0 0 / 0.7);
+}

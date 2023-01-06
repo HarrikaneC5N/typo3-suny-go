@@ -1,0 +1,16 @@
+/* Stype pour social share */
+.socialShare {
+    display: none;    
+    &[aria-hidden="false"] {
+        display: block;
+    }
+}
+
+
+/* Stype pour social simple */
+.social {
+    display: none;
+    &[aria-hidden="false"] {
+        display: flex;
+    }
+}

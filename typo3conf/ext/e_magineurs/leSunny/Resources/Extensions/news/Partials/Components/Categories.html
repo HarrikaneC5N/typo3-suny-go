@@ -1,0 +1,33 @@
+<!-- Start template : Extensions/news/Partials/Components/Categories.html -->
+<f:section name="list"> 
+	<f:if condition="{newsItem.categories -> f:count()}>1">
+		<f:then>
+			<p class="category">
+				<f:for each="{newsItem.categories}" as="category" key="key" iteration="ite">
+					<f:if condition="{ite.isFirst}">
+						{category.title}, ...
+					</f:if>
+				</f:for>
+			</p>
+		</f:then>
+		<f:else>
+			<p class="category">
+				<f:for each="{newsItem.categories}" as="category" key="key">
+					{category.title}
+				</f:for>
+			</p>
+		</f:else>
+	</f:if>
+
+</f:section>
+
+<f:section name="detail">
+	<f:if condition="{newsItem.categories}">
+	    <ul class="list-group list-group-horizontal">
+	        <f:for each="{newsItem.categories}" as="category" key="key">
+	            <li class="list-group-item">{category.title}</li>
+	        </f:for>
+	    </ul>
+	</f:if>
+</f:section>
+<!-- End template : Extensions/news/Partials/Components/Categories.html -->

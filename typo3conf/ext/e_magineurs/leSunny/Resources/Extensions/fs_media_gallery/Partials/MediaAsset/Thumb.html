@@ -1,0 +1,22 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	 xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
+	 xmlns:mf="http://typo3.org/ns/MiniFranske/FsMediaGallery/ViewHelpers">
+
+	<f:section name="Thumb">
+		<figure class="col-6 col-md-4 col-lg-3 mb-0 p-1">
+			<f:if condition="{settings.album.lightbox.enable}">
+				<f:then>
+					<a href="{f:uri.image(image:mediaAsset, width:'{settings.album.lightbox.asset.width}{settings.album.lightbox.asset.resizeMode}', height:'{settings.album.lightbox.asset.height}{settings.album.lightbox.asset.resizeMode}')}" data-fancybox="albumUid-{mediaAlbum.uid}" data-caption="{f:if(condition: '{mediaAsset.properties.title}', then: '{mediaAsset.properties.title} -')} {f:if(condition: '{mediaAsset.properties.description}', then: '{mediaAsset.properties.description} -')} {mediaAlbum.title}">
+						<f:render partial="MediaAsset/Detail" section="Detail" arguments="{alt:mediaAsset.alternative,title:mediaAsset.title,mediaAsset:mediaAsset,width:settings.album.thumb.width,height:settings.album.thumb.height,resizeMode:settings.album.thumb.resizeMode}" />
+					</a>
+				</f:then>
+				<f:else>
+					<f:link.action action="showAsset" arguments="{mediaAlbum:mediaAlbum,mediaAssetUid:mediaAsset.uid}" title="{f:if(condition: '{mediaAsset.properties.title}', then: '{mediaAsset.properties.title} -')} {f:if(condition: '{mediaAsset.properties.description}', then: '{mediaAsset.properties.description} -')} {mediaAlbum.title}">
+						<f:render partial="MediaAsset/Detail" section="Detail" arguments="{alt:mediaAsset.alternative,title:mediaAsset.title,mediaAsset:mediaAsset,width:settings.album.thumb.width,height:settings.album.thumb.height,resizeMode:settings.album.thumb.resizeMode}" />
+					</f:link.action>
+				</f:else>
+			</f:if>
+		</figure>
+	</f:section>
+
+</div>

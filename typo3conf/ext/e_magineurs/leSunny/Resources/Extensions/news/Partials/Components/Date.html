@@ -1,0 +1,41 @@
+<!-- Start template : Extensions/news/Partials/Components/Date.html -->
+<f:if condition="{newsItem.pid} == 3 ">
+    <f:then>
+        <span class="date">
+            <time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+                Publié le <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+                <meta itemprop="datePublished" content="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}" />
+            </time>
+        </span>
+    </f:then>
+    <f:else>
+   
+        <span class="date">
+            <f:if condition="{newsItem.begindate} != ''">
+                <f:then>
+                    <f:if condition="{newsItem.finishdate} != ''">
+                        <f:then>
+                            <f:if condition="<f:format.date format='%x'>{newsItem.begindate}</f:format.date> == <f:format.date format='%x'>{newsItem.finishdate}</f:format.date>">
+                                <f:then>
+                                    Le <f:format.date format="%A %d %B %Y">{newsItem.begindate}</f:format.date>
+                                </f:then>
+                                <f:else>
+                                    Du <f:format.date format="%A %d %B %Y">{newsItem.begindate}</f:format.date> au <f:format.date format="%A %d %B %Y">{newsItem.finishdate}</f:format.date>
+                                </f:else>
+                            </f:if>
+                        </f:then>
+                        <f:else>
+                            À partir du <f:format.date format="%A %d %B %Y">{newsItem.begindate}</f:format.date>
+                        </f:else>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <f:if condition="{newsItem.finishdate} != ''">
+                        Jusqu'au <f:format.date format="%A %d %B %Y">{newsItem.finishdate}</f:format.date>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </span>
+    </f:else>
+</f:if>
+<!-- End template : Extensions/news/Partials/Components/Date.html -->

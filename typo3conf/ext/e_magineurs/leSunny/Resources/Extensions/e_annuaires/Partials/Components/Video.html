@@ -1,0 +1,77 @@
+<!-- Start template : Extensions/e_annuaires/Partials/Components/Video.html -->
+<div class="video">
+    <f:if condition="{fiche.enjeux} != ''">
+        <f:then>
+            <div class="embed-responsive embed-responsive-16by9">
+                <f:format.raw>
+                    {fiche.enjeux}
+                </f:format.raw>
+            </div>
+        </f:then>
+        <f:else>
+            <f:alias map="{file: fiche.documents.0.fichier.0.originalResource, image: fiche.image.originalResource}">
+                <f:if condition="{0:file.extension} == {0:'flv'}">
+                    <f:then>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <object 
+                                classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+                                name="player" 
+                                width="{settings.largeurLecteur}"
+                                height="{settings.hauteurLecteur}"    
+                            >
+                                <param 
+                                    name="movie" 
+                                    value="{settings.miniLecteur}" 
+                                />
+                                <param name="allowfullscreen" value="true" />
+                                <param name="allowscriptaccess" value="always" />
+                                <param 
+                                    name="flashvars" 
+                                    value="file=/{file.publicUrl}&amp;image={f:uri.image(image:fiche.image.0, width: settings.largeurLecteur, height:settings.hauteurLecteur)}" />
+                                <!--[if gte IE 7]> <!-->
+                                <object 
+                                    type="application/x-shockwave-flash" 
+                                    data="{settings.miniLecteur}" 
+                                    width="{settings.largeurLecteur}"
+                                    height="{settings.hauteurLecteur}"    
+                                >
+                                        <param 
+                                            name="movie" 
+                                            value="{settings.miniLecteur}" 
+                                        />
+                                        <param name="allowfullscreen" value="true" />
+                                        <param name="allowscriptaccess" value="always" />
+                                        <param 
+                                            name="flashvars" 
+                                            value="file=/{file.publicUrl}&amp;image={f:uri.image(image:fiche.image.0, width: settings.largeurLecteur, height: settings.hauteurLecteur)}" 
+                                        />
+                                </object>
+                                <!--<![endif]-->
+                            </object>
+                        </div>
+                    </f:then>
+                    <f:else>  
+                        <div class="ewebtvacces_video">
+                        <f:for each="{fiche.documents}" as="video">
+                            <f:if condition="{fiche.image}">
+                                <f:then>
+                                    <video poster="{f:uri.image(image:fiche.image.0,  width:settings.largeurLecteur, height: settings.hauteurLecteur)}" controls="controls" width="{settings.largeurLecteur}" height="{settings.hauteurLecteur}">
+                                </f:then>
+                                <f:else>
+                                    <video controls="controls" width="{settings.largeurLecteur}" height="{settings.hauteurLecteur}">
+                                </f:else>
+                            </f:if>     
+                                <f:for each="{video.fichier}" as="media">
+                                    <source src="{media.originalResource.publicUrl}" type="{media.originalResource.mime_type}" />
+                                </f:for>                      
+                                <i><f:translate key="no_valide_fichier" /></i>
+                            </video>
+                        </f:for>
+                        </div> 
+                    </f:else>                
+                </f:if>
+            </f:alias>
+        </f:else>
+    </f:if>
+</div>
+<!-- End template : Extensions/e_annuaires/Partials/Components/Video.html -->

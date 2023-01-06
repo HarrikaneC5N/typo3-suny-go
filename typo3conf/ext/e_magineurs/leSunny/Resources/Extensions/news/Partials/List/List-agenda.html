@@ -1,0 +1,55 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:section name="list">
+ <!-- Start template : Extensions/news/Partials/List/List-actushp.html / section : list-->
+    <div class="relative">
+        <div class="list list-news list-{settings.templateLayout} row lazyLoadContainer">
+            <f:if condition="{settings.hidePagination}">
+                <f:then>
+                    <f:for each="{news}" as="newsItem" iteration="iterator">
+                        <f:render section="card" arguments='{newsItem:newsItem}' />
+                    </f:for>
+                </f:then>
+                <f:else>
+                    <f:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
+                        <f:for each="{paginatedNews}" as="newsItem" iteration="iterator">
+                            <f:render section="card" arguments='{newsItem:newsItem}' />
+                        </f:for>
+                    </f:widget.paginate>
+                </f:else>
+            </f:if>
+        </div>
+        
+    </div>
+     <!-- End template : Extensions/news/Partials/List/List-actushp.html / section : list-->
+</f:section>
+
+
+<f:section name="card">
+ <!-- Start template : Extensions/news/Partials/List/List-actushp.html / section : card-->
+    <article class="col-md-6 articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}" itemscope="itemscope" itemtype="http://schema.org/Article" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+        <n:link newsItem="{newsItem}" settings="{settings}" class="card card-news card-{settings.templateLayout}">
+            <div class="card-body order-2">
+               
+                <div class="content">
+                    <h2>
+                        {newsItem.title -> f:format.crop(maxCharacters: '75', respectWordBoundaries:'1') -> f:format.raw()}
+                    </h2>
+                    <f:render partial="Components/Categories" section="list" arguments="{_all}" />
+                    <f:render partial="Components/Date" arguments="{_all}" />
+                    <f:render partial="Components/Teaser" arguments="{_all}" />
+                </div>
+            </div>
+            <div class="order-1">
+                <f:render partial="Components/Image" section="list" arguments="{
+                    data: _all, 
+                    widthSmall: '320c',
+                    heightSmall: '207c',
+                    widthBig: '550c',
+                    heightBig: '320c'
+                }" />
+            </div>
+        </n:link>
+    </article>
+     <!-- End template : Extensions/news/Partials/List/List-actushp.html / section : card-->
+</f:section>
